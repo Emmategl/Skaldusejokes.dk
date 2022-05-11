@@ -156,3 +156,16 @@ span b {
 }
 
 
+.web-cam { 
+    width: 550px;
+    height: 550px;
+    border-radius: 325px;
+    -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+  }
+  
+  video {
+    width: 900px;
+    height: 900px;
+    top: -125px;
+    left: -125px;
+  }

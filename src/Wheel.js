@@ -33,7 +33,7 @@ element.classList.remove('animate');
   setTimeout(function(){
     element.classList.add('animate');
     document.getElementsByClassName('span1')[0].style.backgroundImage = "url('/stave.png')";
-
+    document.getElementById('video').play();
     audios.play()
     }, 5000);
 }
@@ -71,7 +71,7 @@ function Wheel() {
     </div>
 
     <div className="web-cam">
-      <video controls>
+      <video id="video">
     <source src="stave.mp4" type="video/mp4"/>
       </video>
   </div>
