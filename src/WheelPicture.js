@@ -79,7 +79,7 @@ function WheelPicture() {
         <img onClick={() => start()} className="button" src="button.png" />
         <div className="display">-</div>
       </div>
-      <div className="web-cam">
+      <div id="web-cam">
         <video playsInline id="video" muted>
           <source src="stave.mp4" type="video/mp4" />
         </video>
