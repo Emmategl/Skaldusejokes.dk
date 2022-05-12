@@ -17,23 +17,33 @@ function WheelPicture() {
     8: "Snowman",
   };
 
+  
+
   const handleWin = (actualDeg) => {
     const display = document.querySelector(".display");
     const winningSymbolNr = Math.ceil(actualDeg / zoneSize);
     display.innerHTML = symbolSegments[winningSymbolNr];
     if (winningSymbolNr) {
-      document.getElementById("video").style.display = "inline";
-      document.getElementById("video").play();
-      document
-        .getElementById("video")
-        .addEventListener("ended", myHandler, false);
-      function myHandler(e) {
-        document.getElementById("video").style.display = "none";
-      }
+      setTimeout(() => {
+        console.log("Delayed for 1 second.");
+        let hi = window.innerHeight
+
+        setTimeout(() => {
+          console.log("Delayed for 1 second.");
+        document.getElementById("video").classList.add("videoanimation");
+        document.getElementById("video").style.visibility = "visible"
+        document.getElementById("video").play();
+        document.getElementById("video").addEventListener("ended", myHandler, false);
+        function myHandler(e) {
+          document.getElementById("video").style.display = "none";
+        }
+      }, "1000")
+      }, "1000");
     }
   };
 
   function start() {
+    //document.getElementById("video").style.display = "block";
     var video = document.getElementById("video");
     video.muted = false;
     const display = document.querySelector(".display");
@@ -72,19 +82,19 @@ function WheelPicture() {
 
   return (
     <>
-    <div id="outer">
-      <div id="app">
-        <img className="marker" src="marker.png" />
-        <img className="wheel" src="wheel.png" />
-        <img onClick={() => start()} className="button" src="button.png" />
-        <div className="display">-</div>
+      <div id="outer">
+        <div id="app">
+          <img className="marker" src="marker.png" />
+          <img className="wheel" src="wheel.png" />
+          <img onClick={() => start()} className="button" src="button.png" />
+          <div className="display">-</div>
+        </div>
+        <div id="web-cam">
+          <video playsInline id="video" muted>
+            <source src="stave.mp4" type="video/mp4" />
+          </video>
+        </div>
       </div>
-      <div id="web-cam">
-        <video playsInline id="video" muted>
-          <source src="stave.mp4" type="video/mp4" />
-        </video>
-      </div>
-    </div>
     </>
   );
 }

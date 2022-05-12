@@ -1,7 +1,9 @@
-
-
-
-
+body{
+  background: black;
+}
+h1{
+  color:white;
+}
 
 .display {
   display: flex;
@@ -74,12 +76,52 @@
   }
   
   #video {
+    visibility:hidden;
     position:absolute;
-    display:none;
+    /*display:none;*/
     width: 900px;
     height: 900px;
     top: -25px;
     left: -265px;
+  }
+
+  .videoanimation  {
+    animation: createBox .25s;
+  }
+
+  /*
+  div {
+    background: red;
+    animation: createBox .25s;
+    width: 98px; height: 98px;
+  }
+  */
+
+  @keyframes createBox {
+    from {
+      visibility: visible;
+      opacity: 0;
+    }
+    to {
+     
+    opacity: 1;
+    visibility: visible;
+    
+    }
+  }
+
+  @keyframes createBox1 {
+    from {
+      visibility: visible;
+      opacity: 0;
+      transform: scale(0);
+    }
+    to {
+     
+    opacity: 1;
+    visibility: visible;
+      transform: scale(1);
+    }
   }
 
   #app {
@@ -125,3 +167,4 @@
       top: 0px;
     }
   }
+
