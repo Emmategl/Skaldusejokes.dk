@@ -1,15 +1,62 @@
 #app {
-  width: 500px;
-  height: 500px;
+  width: 510px;
+  height: 510px;
   margin: 0 auto;
-  position: relative;
+  position:absolute;
+}
+
+#outer{
+  background-color: black !important;
+  width: 100%;
+  text-align: center;
+  position:relative;
 }
 
 body{
     height: 85vh;
+    
 }
 
 @media screen and (max-width: 600px) {
+
+  #app {
+    width: 350px;
+    height: 350px;
+}
+
+body{
+  height: 30vh;
+}
+
+.marker {
+  position: absolute;
+  width: 60px;
+  left: 146px!important;
+  top: -20px;
+  z-index: 2;
+}
+
+.web-cam {
+  position:absolute!important;
+  top: 166px!important;
+  left: 45px!important;
+  width: 300px!important;
+  height: 300px!important;
+  border-radius: 25px;
+  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+
+}
+
+#video {
+  position:absolute;
+  width: 900px;
+  height: 900px;
+  top: -15px!important;
+  left: -395px!important;
+}
+
+  
+  /* 
     #app {
         width: 350px;
         height: 350px;
@@ -56,7 +103,7 @@ body{
         top: -15px!important;
         left: -395px!important;
       }
-
+*/
   }
 
 .display {
@@ -76,7 +123,7 @@ body{
 .marker {
   position: absolute;
   width: 60px;
-  left: 247px;
+  left: 227px;
   top: -20px;
   z-index: 2;
 }
@@ -114,6 +161,15 @@ body{
 }
 
 .web-cam {
+  position:absolute;
+  width: 440px;
+  height: 440px;
+  left: 35px;
+  top: 35px;
+  border-radius: 325px;
+  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+
+  /* 
     position:absolute;
     left: 389px;
     top: 300px;
@@ -121,11 +177,11 @@ body{
     height: 474px;
     border-radius: 325px;
     -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+  */
   }
   
   #video {
     position:absolute;
-    display:none;
     width: 900px;
     height: 900px;
     top: -25px;

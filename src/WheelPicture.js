@@ -1,13 +1,7 @@
 import "./App.css";
 import "./WheelPicture.css";
-import { useEffect, useState } from "react";
 
 function WheelPicture() {
-  const [wheel, setWheel] = useState();
-
-  const startButton = document.querySelector(".button");
-  const display = document.querySelector(".display");
-
   let deg = 0;
   let zoneSize = 45; // deg
 
@@ -24,24 +18,27 @@ function WheelPicture() {
   };
 
   const handleWin = (actualDeg) => {
+    const display = document.querySelector(".display");
+    const winningSymbolNr = Math.ceil(actualDeg / zoneSize);
+    display.innerHTML = symbolSegments[winningSymbolNr];
+    if (winningSymbolNr) {
+      document.getElementById("video").style.display = "inline";
+      document.getElementById("video").play();
+      document
+        .getElementById("video")
+        .addEventListener("ended", myHandler, false);
+      function myHandler(e) {
+        document.getElementById("video").style.display = "none";
+      }
+    }
   };
-
-//let btn = document.createElement("button");
-//btn.innerHTML = "Click Me";
-//document.body.appendChild(btn);//
-//
-
-//btn.addEventListener('click', () => { 
-//    document.getElementById('video').style.display = "inline";
-//    document.getElementById('video').play();})//
 
   function start() {
     var video = document.getElementById("video");
-    video.muted= false;
+    video.muted = false;
     const display = document.querySelector(".display");
     const startButton = document.querySelector(".button");
     const wheel = document.querySelector(".wheel");
-    setWheel(wheel);
     // Reset display
     display.innerHTML = "-";
     // Disable button during spin
@@ -69,44 +66,26 @@ function WheelPicture() {
       // Set the real rotation instantly without animation
       wheel.style.transform = `rotate(${actualDeg}deg)`;
       // Calculate and display the winning symbol
-
-      const display = document.querySelector(".display");
-      const winningSymbolNr = Math.ceil(actualDeg / zoneSize);
-      display.innerHTML = symbolSegments[winningSymbolNr];
-      if(winningSymbolNr){
-          document.getElementById('video').style.display = "inline";
-          document.getElementById('video').play();
-         //var video = document.getElementById('video').muted = false;
-         // video.muted = !video.muted;
-          document.getElementById('video').addEventListener('ended',myHandler,false);
-          function myHandler(e) {
-              document.getElementById('video').style.display = "none";
-          }
-     
-      }
-  
       handleWin(actualDeg);
     });
   }
 
   return (
-      <>
-    <div id="app">
-      <img className="marker" src="marker.png" />
-      <img className="wheel" src="wheel.png" />
-
-      <img onClick={() => start()} className="button" src="button.png" />
-
-      <div className="display">-</div>
+    <>
+    <div id="outer">
+      <div id="app">
+        <img className="marker" src="marker.png" />
+        <img className="wheel" src="wheel.png" />
+        <img onClick={() => start()} className="button" src="button.png" />
+        <div className="display">-</div>
+      </div>
+      <div className="web-cam">
+        <video playsInline id="video" muted>
+          <source src="stave.mp4" type="video/mp4" />
+        </video>
+      </div>
     </div>
-       <div className="web-cam">
-         <div style={{"position": "fixed"}}>
-       <video playsInline  controls preload="metadata" id="video" muted>
-       <source src="stave.mp4" type="video/mp4"/>
-     </video>
-       </div>
-   </div>
-   </>
+    </>
   );
 }
 
