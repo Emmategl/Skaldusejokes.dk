@@ -1,6 +1,14 @@
 import "./App.css";
 import "./WheelPicture.css";
-import video1 from "./Videos/stave.mp4";
+import video1 from "./Videos/Video1.mp4";
+import video2 from "./Videos/Video2.mp4";
+import video3 from "./Videos/Video3.mp4";
+import video4 from "./Videos/Video4.mp4";
+import video5 from "./Videos/Video5.mp4";
+import video6 from "./Videos/Video6.mp4";
+import video7 from "./Videos/Video7.mp4";
+import video8 from "./Videos/Video8.mp4";
+
 import { useRef, useEffect, useState } from "react";
 
 function WheelPicture() {
@@ -14,17 +22,6 @@ const[currentVideo, setCurrentVideo] = useState()
 
   let deg = 0;
   let zoneSize = 45; // deg
-
-  const videos = {
-    1: {video1},
-    2: {video1},
-    3: {video1},
-    4: {video1},
-    5: {video1},
-    6: {video1},
-    7: {video1},
-    8: {video1},
-  }
 
   // Counter clockwise
   const symbolSegments = {
@@ -45,9 +42,29 @@ const[currentVideo, setCurrentVideo] = useState()
     display.innerHTML = symbolSegments[winningSymbolNr];
     //currentVideo = JSON.stringify(videos[winningSymbolNr]);
     alert(winningSymbolNr)
-    if(winningSymbolNr>3){
-      alert("Hi")
+    if(winningSymbolNr===1){
       setCurrentVideo(video1)
+    }
+    if(winningSymbolNr===2){
+      setCurrentVideo(video2)
+    }
+    if(winningSymbolNr===3){
+      setCurrentVideo(video3)
+    }
+    if(winningSymbolNr===4){
+      setCurrentVideo(video4)
+    }
+    if(winningSymbolNr===5){
+      setCurrentVideo(video5)
+    }
+    if(winningSymbolNr===6){
+      setCurrentVideo(video6)
+    }
+    if(winningSymbolNr===7){
+      setCurrentVideo(video7)
+    }
+    if(winningSymbolNr===8){
+      setCurrentVideo(video8)
     }
     
     if (winningSymbolNr) {
