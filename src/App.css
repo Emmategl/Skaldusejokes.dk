@@ -1,12 +1,50 @@
+@font-face {
+  font-family: "GilroyLight";   /*Can be any text*/
+  src: local("GilroyLight"),
+    url("./Fonts/GilroyLight.woff") format("woff");
+}
+
+@font-face {
+  font-family: "GilroyBold";   /*Can be any text*/
+  src: local("GilroyExtraBold"),
+    url("./Fonts/GilroyExtraBold.woff") format("woff");
+}
+
 h1{
   color: black;
-  font-size: 28px;
-  margin-bottom: 50px;
-  margin-top: 35px;
+  font-size: 38px;
+  margin-top: 30px;
   margin-left: 20px;
   margin-right: 20px;
   text-align: center;
-  font-family: 'Montserrat', Helvetica, "Trebuchet MS", Verdana, sans-serif;
-  
-  
+  font-family: "GilroyLight";
+  margin-block-end: 0em;
+}
+
+h2{
+  color: black;
+  font-size: 48px;
+  margin-bottom: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: center;
+  font-family: "GilroyBold";
+  margin-block-start: 0.00em;
+}
+
+/*font-family: 'Montserrat', Helvetica, "Trebuchet MS", Verdana, sans-serif; */
+
+.App-logo{
+width:60%;
+display: block;
+  margin-left: auto;
+  margin-right: auto;
+ padding-bottom: 40px;
+ padding-top: 40px;
+}
+@media screen and (max-width: 600px) {
+  .App-logo{
+    width:90%;
+    }
+
 }

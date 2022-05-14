@@ -35,13 +35,8 @@ const[currentVideo, setCurrentVideo] = useState()
     8: "Snowman",
   };
 
-
   const handleWin = (actualDeg) => {
-    const display = document.querySelector(".display");
     const winningSymbolNr = Math.ceil(actualDeg / zoneSize);
-    display.innerHTML = symbolSegments[winningSymbolNr];
-    //currentVideo = JSON.stringify(videos[winningSymbolNr]);
-    alert(winningSymbolNr)
     if(winningSymbolNr===1){
       setCurrentVideo(video1)
     }
@@ -68,10 +63,6 @@ const[currentVideo, setCurrentVideo] = useState()
     }
     
     if (winningSymbolNr) {
-      setTimeout(() => {
-        console.log("Delayed for 1 second.");
-        let hi = window.innerHeight
-
         setTimeout(() => {
           console.log("Delayed for 1 second.");
         document.getElementById("video").classList.add("videoanimation");
@@ -79,28 +70,28 @@ const[currentVideo, setCurrentVideo] = useState()
         document.getElementById("video").play();
         document.getElementById("video").addEventListener("ended", myHandler, false);
         function myHandler(e) {
-          document.getElementById("video").style.display = "none";
+          //document.getElementById("video").style.display = "none";
+          document.getElementById("video").style.visibility = "hidden"
         }
-      }, "1000")
-      }, "1000");
+      }, "500")
     }
   };
 
   function start() {
+    let audios = new Audio("/wheel.mp3")
+    audios.play()
     //document.getElementById("video").style.display = "block";
     var video = document.getElementById("video");
     video.muted = false;
-    const display = document.querySelector(".display");
     const startButton = document.querySelector(".button");
     const wheel = document.querySelector(".wheel");
     // Reset display
-    display.innerHTML = "-";
     // Disable button during spin
     startButton.style.pointerEvents = "none";
     // Calculate a new rotation between 5000 and 10 000
     deg = Math.floor(5000 + Math.random() * 5000);
     // Set the transition on the wheel
-    wheel.style.transition = "all 10s ease-out";
+    wheel.style.transition = "all 9s ease-out";
     // Rotate the wheel
     wheel.style.transform = `rotate(${deg}deg)`;
     // Apply the blur
@@ -132,7 +123,6 @@ const[currentVideo, setCurrentVideo] = useState()
           <img className="wheel" src="WheelsThis.png" />
           <img className="marker" src="marker.png" />
           <img onClick={() => start()} className="button" src="button.png" />
-          <div className="display">-</div>
         </div>
         <div id="web-cam">
           <video ref={videoRef} playsInline id="video" muted>
