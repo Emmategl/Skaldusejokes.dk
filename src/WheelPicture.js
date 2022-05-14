@@ -81,6 +81,7 @@ const[currentVideo, setCurrentVideo] = useState()
   };
 
   function start() {
+    
     let audios = new Audio("/wheel.mp3")
     audios.play()
     //document.getElementById("video").style.display = "block";
