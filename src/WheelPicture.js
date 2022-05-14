@@ -1,8 +1,17 @@
 import "./App.css";
 import "./WheelPicture.css";
 import video1 from "./Videos/stave.mp4";
+import { useRef, useEffect, useState } from "react";
 
 function WheelPicture() {
+const[currentVideo, setCurrentVideo] = useState()
+
+  const videoRef = useRef();
+
+  useEffect(() => {    
+    videoRef.current?.load();
+  }, [currentVideo]);
+
   let deg = 0;
   let zoneSize = 45; // deg
 
@@ -29,20 +38,18 @@ function WheelPicture() {
     8: "Snowman",
   };
 
-  let currentVideo = "hi";
 
   const handleWin = (actualDeg) => {
     const display = document.querySelector(".display");
     const winningSymbolNr = Math.ceil(actualDeg / zoneSize);
     display.innerHTML = symbolSegments[winningSymbolNr];
     //currentVideo = JSON.stringify(videos[winningSymbolNr]);
-    if(winningSymbolNr){
-      currentVideo = video1
-    }
-   
-    
     alert(winningSymbolNr)
-    alert(currentVideo)
+    if(winningSymbolNr>3){
+      alert("Hi")
+      setCurrentVideo(video1)
+    }
+    
     if (winningSymbolNr) {
       setTimeout(() => {
         console.log("Delayed for 1 second.");
@@ -100,7 +107,6 @@ function WheelPicture() {
     });
   }
 
-  if(currentVideo != undefined)
   return (
     <>
       <div id="outer">
@@ -112,7 +118,7 @@ function WheelPicture() {
           <div className="display">-</div>
         </div>
         <div id="web-cam">
-          <video key={currentVideo} playsInline id="video" muted>
+          <video ref={videoRef} playsInline id="video" muted>
             <source src={currentVideo} type="video/mp4" />
           </video>
         </div>
