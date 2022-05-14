@@ -9,7 +9,9 @@ function App() {
   return (
     <>
     <h1>Burde du se </h1>
-    <h2>"JOKES - fra en hvid, straigth mand"?</h2>
+    <div id="containerIntro">
+    <h2>"JOKES - fra en hvid, straigth mand" <span>?</span></h2>
+    </div>
     <WheelPicture></WheelPicture>
     </>
   );

@@ -72,6 +72,9 @@ const[currentVideo, setCurrentVideo] = useState()
         function myHandler(e) {
           //document.getElementById("video").style.display = "none";
           document.getElementById("video").style.visibility = "hidden"
+          const startButton = document.querySelector(".button");
+           // Enable button when spin is over
+          startButton.style.pointerEvents = "auto";
         }
       }, "500")
     }
@@ -100,8 +103,8 @@ const[currentVideo, setCurrentVideo] = useState()
     wheel.addEventListener("transitionend", () => {
       // Remove blur
       wheel.classList.remove("blur");
-      // Enable button when spin is over
-      startButton.style.pointerEvents = "auto";
+     
+     
       // Need to set transition to none as we want to rotate instantly
       wheel.style.transition = "none";
       // Calculate degree on a 360 degree basis to get the "natural" real rotation
@@ -128,6 +131,7 @@ const[currentVideo, setCurrentVideo] = useState()
           <video ref={videoRef} playsInline id="video" muted>
             <source src={currentVideo} type="video/mp4" />
           </video>
+          <div className="shadow"></div>
         </div>
       </div>
     </>
