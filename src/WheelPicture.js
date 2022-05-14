@@ -1,9 +1,21 @@
 import "./App.css";
 import "./WheelPicture.css";
+import video1 from "./Videos/stave.mp4";
 
 function WheelPicture() {
   let deg = 0;
   let zoneSize = 45; // deg
+
+  const videos = {
+    1: {video1},
+    2: {video1},
+    3: {video1},
+    4: {video1},
+    5: {video1},
+    6: {video1},
+    7: {video1},
+    8: {video1},
+  }
 
   // Counter clockwise
   const symbolSegments = {
@@ -17,12 +29,20 @@ function WheelPicture() {
     8: "Snowman",
   };
 
-  
+  let currentVideo = "hi";
 
   const handleWin = (actualDeg) => {
     const display = document.querySelector(".display");
     const winningSymbolNr = Math.ceil(actualDeg / zoneSize);
     display.innerHTML = symbolSegments[winningSymbolNr];
+    //currentVideo = JSON.stringify(videos[winningSymbolNr]);
+    if(winningSymbolNr){
+      currentVideo = video1
+    }
+   
+    
+    alert(winningSymbolNr)
+    alert(currentVideo)
     if (winningSymbolNr) {
       setTimeout(() => {
         console.log("Delayed for 1 second.");
@@ -80,18 +100,20 @@ function WheelPicture() {
     });
   }
 
+  if(currentVideo != undefined)
   return (
     <>
       <div id="outer">
         <div id="app">
+          <img className="foot" src="fod2.png" />
+          <img className="wheel" src="WheelsThis.png" />
           <img className="marker" src="marker.png" />
-          <img className="wheel" src="wheel.png" />
           <img onClick={() => start()} className="button" src="button.png" />
           <div className="display">-</div>
         </div>
         <div id="web-cam">
-          <video playsInline id="video" muted>
-            <source src="stave.mp4" type="video/mp4" />
+          <video key={currentVideo} playsInline id="video" muted>
+            <source src={currentVideo} type="video/mp4" />
           </video>
         </div>
       </div>

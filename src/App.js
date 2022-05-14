@@ -7,7 +7,7 @@ import WheelPicture from './WheelPicture';
 function App() {
   return (
     <>
-    <h1>Er du klar til JOKES?</h1>
+    <h1>Skal du se "JOKES - fra en hvid, straigth mand"?</h1>
     <WheelPicture></WheelPicture>
     </>
   );
