@@ -1,8 +1,11 @@
 body {
   /* background: #5d6ba8;  /* fallback for old browsers */
 
-  /*background: #ebe8e7;*/
+  /*background: #ebe8e7;
   background: #fff3b2;
+  */
+  /**/
+  background: #dff2ee;
 }
 .foots {
   position: absolute;
@@ -44,9 +47,9 @@ body {
 
 .marker {
   position: absolute;
-  width: 60px;
-  left: 185px;
-  top: 1px;
+  width: 55px;
+  left: 187px;
+  top: 6px;
   z-index: 2;
 }
 
@@ -68,6 +71,9 @@ body {
 
 .button:hover {
   opacity: 0.8;
+}
+.button.disabled {
+  opacity: 0.6;
 }
 
 .blur {
@@ -213,8 +219,9 @@ body {
   }
 
   .marker {
-    left: 142px !important;
-    top: -2px;
+    left: 149px !important;
+    top: 4.6px;
+    width: 47px;
   }
 
   .wheel {
@@ -234,7 +241,7 @@ body {
   }
 }
 
-@media screen and (min-device-width: 375px) and (max-device-height: 810px)   {
+@media screen and (min-device-width: 375px) and (max-device-height: 810px) {
   #video {
     top: -5px;
     width: 150%;
@@ -273,8 +280,9 @@ body {
   }
 
   .marker {
-    left: 124px !important;
-    top: -2px;
+    left: 130.9px !important;
+    top: 4px;
+    width: 47px;
   }
 
   .wheel {
@@ -293,7 +301,6 @@ body {
     height: 100%;
   }
 }
-
 
 @media screen and (min-width: 1080px) and (min-height: 1028px) {
   #app {
@@ -321,7 +328,8 @@ body {
     top: 125px;
   }
   .marker {
-    left: 286px !important;
-    top: 3px;
+    left: 284px !important;
+    top: 9px;
+    width: 67px;
   }
 }

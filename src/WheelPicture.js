@@ -78,6 +78,7 @@ const[currentVideo, setCurrentVideo] = useState()
           const startButton = document.querySelector(".button");
            // Enable button when spin is over
           startButton.style.pointerEvents = "auto";
+          startButton.classList.remove("disabled");
         }
       }, "500")
     }
@@ -87,6 +88,7 @@ const[currentVideo, setCurrentVideo] = useState()
     const startButton = document.querySelector(".button");
     const wheel = document.querySelector(".wheel");
     audios.play()
+    startButton.classList.add("disabled");
     //document.getElementById("video").style.display = "block";
     var video = document.getElementById("video");
     video.muted = false;
@@ -129,14 +131,14 @@ const[currentVideo, setCurrentVideo] = useState()
 
       <div id="outer">
         <div id="app">
-          <img className="foot" src="fod8.png" />
-          <img className="wheel" src="WheelsThis.png" />
-          <img className="marker" src="marker.png" />
-          <img onClick={() => start()} className="button" src="button.png" />
+          <img className="foot" src="fodgrøn.png" />
+          <img className="wheel" src="hjulgrøn.png" />
+          <img className="marker" src="markerlilla.png" />
+          <img onClick={() => start()} className="button" src="buttongrøn.png" />
         </div>
         <div id="web-cam">
           <video ref={videoRef} playsInline id="video" muted>
-            <source src={video4} type="video/mp4" />
+            <source src={currentVideo} type="video/mp4" />
           </video>
           <div className="shadow"></div>
         </div>
