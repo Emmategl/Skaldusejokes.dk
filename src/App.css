@@ -54,6 +54,24 @@ span{
   }
 }
 
+@media screen and (min-device-width: 375px) and (max-device-height: 810px)   {
+  h1{
+    font-size: 20px;
+    margin-top: 30px;
+    margin-block-end: -0.1em;
+  }
+  
+  h2{
+    font-size: 16px;
+    margin-bottom: 50px;
+    margin-block-start: 0.00em;
+  }
+  
+  span{
+    font-size: 20px;
+  }
+}
+
 @media screen and (min-width:641px) and (max-width:961px){
   h1{
     color: black;

@@ -15,9 +15,11 @@ function WheelPicture() {
 const[currentVideo, setCurrentVideo] = useState()
 
   const videoRef = useRef();
+  let audios = new Audio("/wheel.mp3")
 
   useEffect(() => {    
     videoRef.current?.load();
+    audios.load()
   }, [currentVideo]);
 
   let deg = 0;
@@ -82,25 +84,24 @@ const[currentVideo, setCurrentVideo] = useState()
   };
 
   function start() {
-    
-    let audios = new Audio("/wheel.mp3")
+    const startButton = document.querySelector(".button");
+    const wheel = document.querySelector(".wheel");
     audios.play()
     //document.getElementById("video").style.display = "block";
     var video = document.getElementById("video");
     video.muted = false;
-    const startButton = document.querySelector(".button");
-    const wheel = document.querySelector(".wheel");
     // Reset display
     // Disable button during spin
     startButton.style.pointerEvents = "none";
     // Calculate a new rotation between 5000 and 10 000
     deg = Math.floor(5000 + Math.random() * 5000);
     // Set the transition on the wheel
-    wheel.style.transition = "all 9s ease-out";
+    wheel.style.transition = "all 9s ease-in-out";
     // Rotate the wheel
     wheel.style.transform = `rotate(${deg}deg)`;
     // Apply the blur
     wheel.classList.add("blur");
+    
 
     wheel.addEventListener("transitionend", () => {
       // Remove blur
@@ -118,11 +119,14 @@ const[currentVideo, setCurrentVideo] = useState()
       // Calculate and display the winning symbol
       handleWin(actualDeg);
     });
-  }
+}
 
   return (
     <>
-    
+    <audio id="sound" src="/wheel.mp3" preload="auto">
+      Your browser does not support the <code>audio</code> element.
+    </audio>
+
       <div id="outer">
         <div id="app">
           <img className="foot" src="fod8.png" />
@@ -132,7 +136,7 @@ const[currentVideo, setCurrentVideo] = useState()
         </div>
         <div id="web-cam">
           <video ref={videoRef} playsInline id="video" muted>
-            <source src={video8} type="video/mp4" />
+            <source src={video4} type="video/mp4" />
           </video>
           <div className="shadow"></div>
         </div>
