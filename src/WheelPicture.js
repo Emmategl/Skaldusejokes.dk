@@ -70,6 +70,7 @@ const[currentVideo, setCurrentVideo] = useState()
         document.getElementById("video").play();
         document.getElementById("video").addEventListener("ended", myHandler, false);
         function myHandler(e) {
+          document.getElementById("video").classList.remove("videoanimation");
           //document.getElementById("video").style.display = "none";
           document.getElementById("video").style.visibility = "hidden"
           const startButton = document.querySelector(".button");
@@ -121,16 +122,17 @@ const[currentVideo, setCurrentVideo] = useState()
 
   return (
     <>
+    
       <div id="outer">
         <div id="app">
-          <img className="foot" src="fod2.png" />
+          <img className="foot" src="fod8.png" />
           <img className="wheel" src="WheelsThis.png" />
           <img className="marker" src="marker.png" />
           <img onClick={() => start()} className="button" src="button.png" />
         </div>
         <div id="web-cam">
           <video ref={videoRef} playsInline id="video" muted>
-            <source src={currentVideo} type="video/mp4" />
+            <source src={video8} type="video/mp4" />
           </video>
           <div className="shadow"></div>
         </div>
