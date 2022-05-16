@@ -76,6 +76,9 @@ body {
 
 @keyframes blur {
   0% {
+    filter: blur(0px);
+  }
+  15% {
     filter: blur(1.5px);
   }
   80% {
@@ -175,7 +178,6 @@ body {
 @media screen and (max-width: 600px) {
   #video {
     top: -5px;
-    left: -65px;
     width: 150%;
     height: 150%;
     overflow-x: hidden;
@@ -183,7 +185,7 @@ body {
 
   #web-cam {
     top: 170px;
-    left: 50%;
+    left: 55%;
     margin-top: -186px;
     margin-left: -166px;
     width: 294px;
@@ -192,7 +194,7 @@ body {
 
   #app {
     top: 170px;
-    left: 50%;
+    left: 55%;
     margin-top: -210px;
     margin-left: -190px;
     width: 380px;
@@ -212,7 +214,7 @@ body {
 
   .marker {
     left: 142px !important;
-    top: 0px;
+    top: -2px;
   }
 
   .wheel {
@@ -223,14 +225,75 @@ body {
   .wheel::after {
     overflow-x: hidden !important;
   }
+
+  html,
+  body {
+    overflow-x: hidden;
+    position: relative;
+    height: 100%;
+  }
 }
 
-html,
-body {
-  overflow-x: hidden;
-  position: relative;
-  height: 100%;
+@media screen and (min-device-width: 375px) and (max-device-height: 810px)   {
+  #video {
+    top: -5px;
+    width: 150%;
+    height: 150%;
+    overflow-x: hidden;
+  }
+
+  #web-cam {
+    top: 162px;
+    left: 59.5%;
+    margin-top: -186px;
+    margin-left: -166px;
+    width: 264px;
+    height: 264px;
+  }
+
+  #app {
+    top: 170px;
+    left: 60%;
+    margin-top: -215px;
+    margin-left: -190px;
+    width: 340px;
+    height: 340px;
+  }
+
+  .foot {
+    top: 445px;
+    left: 65%;
+    overflow-x: hidden;
+  }
+
+  .button {
+    top: 50px;
+    overflow-x: hidden;
+    width: 220px;
+  }
+
+  .marker {
+    left: 124px !important;
+    top: -2px;
+  }
+
+  .wheel {
+    overflow-x: hidden !important;
+    will-change: transform;
+  }
+
+  .wheel::after {
+    overflow-x: hidden !important;
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
+    position: relative;
+    height: 100%;
+  }
 }
+
 
 @media screen and (min-width: 1080px) and (min-height: 1028px) {
   #app {
@@ -259,6 +322,6 @@ body {
   }
   .marker {
     left: 286px !important;
-    top: 0px;
+    top: 3px;
   }
 }
