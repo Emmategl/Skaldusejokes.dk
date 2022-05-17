@@ -131,7 +131,7 @@ const[currentVideo, setCurrentVideo] = useState()
 
       <div id="outer">
         <div id="app">
-          <img className="foot" src="fodgrøn.png" />
+          <img className="foot" src="fodgrøn2.png" />
           <img className="wheel" src="hjulgrøn.png" />
           <img className="marker" src="markerlilla.png" />
           <img onClick={() => start()} className="button" src="buttongrøn.png" />
