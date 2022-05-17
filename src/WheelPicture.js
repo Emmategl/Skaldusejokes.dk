@@ -38,7 +38,11 @@ const[currentVideo, setCurrentVideo] = useState()
   };
 
   const handleWin = (actualDeg) => {
+    console.log(actualDeg)
+    console.log(zoneSize)
+    
     const winningSymbolNr = Math.ceil(actualDeg / zoneSize);
+    console.log(winningSymbolNr)
     if(winningSymbolNr===1){
       setCurrentVideo(video1)
     }
@@ -97,6 +101,7 @@ const[currentVideo, setCurrentVideo] = useState()
     startButton.style.pointerEvents = "none";
     // Calculate a new rotation between 5000 and 10 000
     deg = Math.floor(5000 + Math.random() * 5000);
+    console.log(deg)
     // Set the transition on the wheel
     wheel.style.transition = "all 9s ease-in-out";
     // Rotate the wheel
@@ -116,6 +121,7 @@ const[currentVideo, setCurrentVideo] = useState()
       // Important because we wan/wheel.pngt to start the next spin from that one
       // Use modulus to get the rest value
       const actualDeg = deg % 360;
+      console.log(actualDeg)
       // Set the real rotation instantly without animation
       wheel.style.transform = `rotate(${actualDeg}deg)`;
       // Calculate and display the winning symbol

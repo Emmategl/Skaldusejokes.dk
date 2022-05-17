@@ -6,12 +6,15 @@ body {
   */
   /**/
   background: #dff2ee;
+  
 }
-.foots {
+.foote {
   position: absolute;
-  top: 265px;
-  left: -25%;
-  z-index: 10;
+  top: 18px;
+  left: 40%;
+  margin-top: -205px;
+  margin-left: -205px;
+  width: 100%;
 }
 
 .foot {
@@ -49,7 +52,7 @@ body {
   position: absolute;
   width: 55px;
   left: 187px;
-  top: 6px;
+  top: 4px;
   z-index: 2;
 }
 
@@ -182,6 +185,15 @@ body {
 }
 
 @media screen and (max-width: 600px) {
+
+  .foote {
+    position: absolute;
+    top: 70px;
+    left: 47%;
+    margin-top: -205px;
+    margin-left: -205px;
+    width: 100%;
+  }
   #video {
     top: -5px;
     width: 150%;

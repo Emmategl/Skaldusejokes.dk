@@ -10,6 +10,9 @@
     url("./Fonts/GilroyExtraBold.woff") format("woff");
 }
 
+#text{
+}
+
 h1{
   color: black;
   font-size: 38px;
@@ -17,18 +20,21 @@ h1{
   margin-right: 20px;
   text-align: center;
   font-family: "GilroyLight";
-  
-  margin-bottom: 50px;
+  margin-block-start: 0.6em;
+
 }
 
 h2{
   color: black;
-  font-size: 20px;
+  font-size: 38px;
   margin-left: 20px;
   margin-right: 20px;
   text-align: center;
+  margin-bottom: 50px;
   font-family: "GilroyBold";
- 
+  margin-block-end: 1.7em;
+  margin-block-start: 0.4em;
+
 }
 
 a{
@@ -36,7 +42,7 @@ a{
   font-family: "GilroyLight";
   color: black;
   text-decoration: green underline;
-  text-underline-offset: 8px;
+  text-underline-offset: 4px;
 }
 
 span{
@@ -47,13 +53,14 @@ span{
   h1{
     font-size: 25px;
     margin-top: 30px;
-    margin-block-end: -0.0em;
+    margin-block-end: 0.3em;
   }
   
   h2{
     font-size: 25px;
     margin-bottom: 50px;
     margin-block-start: 0.00em;
+    font-family: "GilroyBold";
   }
   
   span{
@@ -63,13 +70,14 @@ span{
 
 @media screen and (min-device-width: 375px) and (max-device-height: 810px)   {
   h1{
-    font-size: 20px;
+    font-size: 23px;
     margin-top: 30px;
-    margin-block-end: -0.1em;
+    margin-block-end: 0.2em;
+    margin-block-start: 0.4em;
   }
   
   h2{
-    font-size: 15px;
+    font-size: 23px;
     margin-bottom: 50px;
     margin-block-start: 0.00em;
     
@@ -89,7 +97,8 @@ span{
     margin-right: 20px;
     text-align: center;
     font-family: "GilroyLight";
-    margin-block-end: -0.4em;
+    margin-block-end: 0.2em;
+    
   }
   
   h2{
@@ -98,6 +107,7 @@ span{
     margin-left: 20px;
     margin-right: 20px;
     margin-block-start: 0.00em;
+    
   }
   
   span{

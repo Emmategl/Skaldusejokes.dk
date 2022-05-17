@@ -8,11 +8,12 @@ import tekst from "./test.png"
 function App() {
   return (
     <>
-        
-    <h2><a href="url">JOKES - fra en hvid, straight mand</a></h2>
-    <h1>Burde du se turnéen?</h1>
+        <div id="text">
+    <h1>Burde du tage ind og se:</h1>
     <div id="containerIntro">
-    <h2></h2>
+    <h2>"JOKES - fra en hvid, straight mand" ?</h2>
+
+    </div>
     </div>
     <WheelPicture></WheelPicture>
     </>
