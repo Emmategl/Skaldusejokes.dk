@@ -37,6 +37,23 @@ const[currentVideo, setCurrentVideo] = useState()
     8: "Snowman",
   };
 
+  var prefix = (function () {
+    var styles = window.getComputedStyle(document.documentElement, ''),
+      pre = (Array.prototype.slice
+        .call(styles)
+        .join('') 
+        .match(/-(moz|webkit|ms)-/) || (styles.OLink === '' && ['', 'o'])
+      )[1],
+      dom = ('WebKit|Moz|MS|O').match(new RegExp('(' + pre + ')', 'i'))[1];
+    return {
+      dom: dom,
+      lowercase: pre,
+      css: '-' + pre + '-',
+      js: pre[0].toUpperCase() + pre.substr(1)
+    };
+  })();
+
+
   
 
   const handleWin = (actualDeg) => {
@@ -146,22 +163,26 @@ const[currentVideo, setCurrentVideo] = useState()
     startButton.style.pointerEvents = "none";
     // Calculate a new rotation between 5000 and 10 000
     deg = Math.floor(5000 + Math.random() * 5000);
-    console.log(deg)
-    
+  
     // Set the transition on the wheel
     wheel.style.transition = "all 9s ease-in-out";
-    wheel.style.webkitTransition="all 9s ease-in-out";
+    //wheel.style.webkitTransition="all 9s ease-in-out";
+    wheel.style.webkitTransitionProperty = "transform";
+    wheel.style.webkitTransitionDuration = "9s";
+    wheel.style.webkitTransitionDelay = "0s";
+    wheel.style.webkitTransitionTimingFunction = "ease-in-out";
     wheel.style.MozTransition="all 9s ease-in-out";
     wheel.style.msTransition="all 9s ease-in-out";
     wheel.style.OTransition="all 9s ease-in-out";
     // Rotate the wheel
+    //wheel.style.webkitAnimationDelay='-0.2s';
+    wheel.style.webkitTransformDelay = "-0.1s";
     wheel.style.transform = `rotate(${deg}deg)`;
     wheel.style.webkitTransform = `rotate(${deg}deg)`;
     wheel.style.MozTransform = `rotate(${deg}deg)`;
     wheel.style.msTransform = `rotate(${deg}deg)`;
     wheel.style.OTransform = `rotate(${deg}deg)`;
-    
-    // Apply the blur
+      // Apply the blur
     wheel.classList.add("blur");
     
     wheel.addEventListener("transitionend", doSomething);

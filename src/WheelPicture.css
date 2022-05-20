@@ -6,7 +6,7 @@ body {
   */
   /**/
   background: #dff2ee;
-  
+  -webkit-transform:translate3d(0,0,0);
 }
 .foote {
   position: absolute;
@@ -60,9 +60,9 @@ body {
   width: 90%;
   height: 90%;
   position: relative;
+ -webkit-backface-visibility: hidden;
+ -webkit-perspective: 1000;
   backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  -webkit-perspective: 1000;
   perspective: 1000;
 }
 
@@ -157,10 +157,12 @@ body {
 
 .videoanimation {
   animation: fadeIn 0.25s;
+  /*
   backface-visibility: hidden;
 -webkit-backface-visibility: hidden;
 -webkit-perspective: 1000;
 perspective: 1000;
+*/
 }
 
 /*
