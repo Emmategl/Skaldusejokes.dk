@@ -37,11 +37,42 @@ const[currentVideo, setCurrentVideo] = useState()
     8: "Snowman",
   };
 
+  
+
   const handleWin = (actualDeg) => {
     console.log(actualDeg)
     console.log(zoneSize)
     
     const winningSymbolNr = Math.ceil(actualDeg / zoneSize);
+   // if(actualDeg <= 45){
+   //   alert("bringer ud")
+   // }
+   // if(actualDeg > 45 && actualDeg <= 90){
+   //   alert("anders")
+   // }
+   // if(actualDeg > 90 && actualDeg <= 112.5){
+   //   alert("bytte")
+   // }
+   // if(actualDeg > 112.5 && actualDeg <= 135){
+   //   alert("lilla")
+   // }
+   // if(actualDeg > 135 && actualDeg <= 180){
+   //   alert("anden25")
+   // }
+   // if(actualDeg > 180 && actualDeg <= 225){
+   //   alert("vender")
+   // }
+   // if(actualDeg > 225 && actualDeg <= 270){
+   //   alert("tal for dig")
+   // }
+   // if(actualDeg > 270 && actualDeg <= 315){
+   //   alert("shh")
+   // }
+   // if(actualDeg > 315 && actualDeg <= 360){
+   //   alert("coke")
+   // }
+
+
     console.log(winningSymbolNr)
     if(winningSymbolNr===1){
       setCurrentVideo(video1)
@@ -73,6 +104,7 @@ const[currentVideo, setCurrentVideo] = useState()
           console.log("Delayed for 1 second.");
         document.getElementById("video").classList.add("videoanimation");
         document.getElementById("video").style.visibility = "visible"
+        //document.querySelector(".wheel").style.zIndex = "0";
         document.getElementById("video").play();
         document.getElementById("video").addEventListener("ended", myHandler, false);
         function myHandler(e) {
@@ -88,6 +120,19 @@ const[currentVideo, setCurrentVideo] = useState()
     }
   };
 
+  document.addEventListener("keypress", function(event) {
+    // If the user presses the "Enter" key on the keyboard
+    if (event.key === "Enter") {
+      // Cancel the default action, if needed
+      event.preventDefault();
+      const startButton = document.querySelector(".button");
+      if(!startButton.classList.contains("disabled")){
+      // Trigger the button element with a click
+      start()
+      }
+    }
+  });
+
   function start() {
     const startButton = document.querySelector(".button");
     const wheel = document.querySelector(".wheel");
@@ -102,31 +147,83 @@ const[currentVideo, setCurrentVideo] = useState()
     // Calculate a new rotation between 5000 and 10 000
     deg = Math.floor(5000 + Math.random() * 5000);
     console.log(deg)
+    
     // Set the transition on the wheel
     wheel.style.transition = "all 9s ease-in-out";
+    wheel.style.webkitTransition="all 9s ease-in-out";
+    wheel.style.MozTransition="all 9s ease-in-out";
+    wheel.style.msTransition="all 9s ease-in-out";
+    wheel.style.OTransition="all 9s ease-in-out";
     // Rotate the wheel
     wheel.style.transform = `rotate(${deg}deg)`;
+    wheel.style.webkitTransform = `rotate(${deg}deg)`;
+    wheel.style.MozTransform = `rotate(${deg}deg)`;
+    wheel.style.msTransform = `rotate(${deg}deg)`;
+    wheel.style.OTransform = `rotate(${deg}deg)`;
+    
     // Apply the blur
     wheel.classList.add("blur");
     
+    wheel.addEventListener("transitionend", doSomething);
+    wheel.addEventListener("webkitTransitionEnd", doSomething);
+    wheel.addEventListener("mozTransitionEnd", doSomething);
+    wheel.addEventListener("oTransitionEnd", doSomething);
 
-    wheel.addEventListener("transitionend", () => {
-      // Remove blur
-      wheel.classList.remove("blur");
-     
-     
-      // Need to set transition to none as we want to rotate instantly
-      wheel.style.transition = "none";
-      // Calculate degree on a 360 degree basis to get the "natural" real rotation
-      // Important because we wan/wheel.pngt to start the next spin from that one
-      // Use modulus to get the rest value
-      const actualDeg = deg % 360;
-      console.log(actualDeg)
-      // Set the real rotation instantly without animation
-      wheel.style.transform = `rotate(${actualDeg}deg)`;
-      // Calculate and display the winning symbol
-      handleWin(actualDeg);
-    });
+
+    //wheel.addEventListener("webkitTransitionEnd", () => {
+    //  //alert("finished")
+    //  // Remove blur
+    //  wheel.classList.remove("blur");
+    // 
+    // 
+    //  // Need to set transition to none as we want to rotate instantly
+    //  wheel.style.transition = "none";
+    //  wheel.style.webkitTransition="none";
+    //  // Calculate degree on a 360 degree basis to get the "natural" real rotation
+    //  // Important because we wan/wheel.pngt to start the next spin from that one
+    //  // Use modulus to get the rest value
+    //  const actualDeg = deg % 360;
+    //  console.log(actualDeg)
+    //  // Set the real rotation instantly without animation
+    //  wheel.style.transform = `rotate(${actualDeg}deg)`;
+    //  wheel.style.webkitTransform = `rotate(${actualDeg}deg)`;
+    //  // Calculate and display the winning symbol
+    //  handleWin(actualDeg);
+    //});
+
+  function doSomething(){
+    console.log("finished")
+  //alert("finished")
+  // Remove blur
+  wheel.classList.remove("blur");
+ 
+ 
+  // Need to set transition to none as we want to rotate instantly
+  wheel.style.transition = "none";
+  wheel.style.webkitTransition="none";
+  wheel.style.mozTransition="none";
+  wheel.style.oTransition="none";
+
+  //wheel.style.transitionProperty = "none";
+  //wheel.style.WebkitTransitionProperty="none";
+  //wheel.style.mozTransitionProperty="none";
+  //wheel.style.oTransitionProperty="none";
+  
+    // Calculate degree on a 360 degree basis to get the "natural" real rotation
+  // Important because we wan/wheel.pngt to start the next spin from that one
+  // Use modulus to get the rest value
+  const actualDeg = deg % 360;
+  console.log(actualDeg)
+  // Set the real rotation instantly without animation
+  wheel.style.transform = `rotate(${actualDeg}deg)`;
+  wheel.style.webkitTransform = `rotate(${actualDeg}deg)`;
+  wheel.style.MozTransform = `rotate(${actualDeg}deg)`;
+  wheel.style.msTransform = `rotate(${actualDeg}deg)`;
+  wheel.style.OTransform = `rotate(${actualDeg}deg)`;
+
+  // Calculate and display the winning symbol
+  handleWin(actualDeg);
+    }
 }
 
   return (

@@ -60,6 +60,10 @@ body {
   width: 90%;
   height: 90%;
   position: relative;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
 }
 
 .button {
@@ -110,6 +114,7 @@ body {
   margin-left: -237px;
   width: 474px;
   height: 474px;
+  
 }
 
 #web-cam {
@@ -121,7 +126,9 @@ body {
   width: 366px;
   height: 366px;
   border-radius: 325px;
-  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);  
+  mask-image: radial-gradient(circle, white 100%, black 100%);  
+
 }
 
 #video {
@@ -150,6 +157,10 @@ body {
 
 .videoanimation {
   animation: fadeIn 0.25s;
+  backface-visibility: hidden;
+-webkit-backface-visibility: hidden;
+-webkit-perspective: 1000;
+perspective: 1000;
 }
 
 /*
