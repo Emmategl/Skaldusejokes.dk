@@ -132,12 +132,12 @@ body {
 }
 
 #video {
-  opacity: 0;
+opacity: 0;
   visibility: hidden;
   position: absolute;
   /*display:none;*/
-  width: 550px;
-  height: 550px;
+  width: 410px;
+  height: 410px;
   top: -2px;
   left: -3px;
 }
@@ -210,8 +210,9 @@ perspective: 1000;
   }
   #video {
     top: -5px;
+    /*
     width: 150%;
-    height: 150%;
+    height: 150%;*/
     overflow-x: hidden;
   }
 
@@ -270,8 +271,9 @@ perspective: 1000;
 @media screen and (min-device-width: 375px) and (max-device-height: 810px) {
   #video {
     top: -5px;
-    width: 150%;
-    height: 150%;
+    /*
+    width: 700px;
+    height: 700px;*/
     overflow-x: hidden;
   }
 
@@ -339,12 +341,12 @@ perspective: 1000;
   }
 
   #web-cam {
-    top: 210px;
+    top: 211px;
     left: 50.9%;
     margin-top: -185px;
     margin-left: -305px;
-    width: 541px;
-    height: 541px;
+    width: 539px;
+    height: 539px;
   }
   .foot {
     top: 700px;
@@ -358,5 +360,12 @@ perspective: 1000;
     left: 282px !important;
     top: 9px;
     width: 67px;
+  }
+
+  #video {
+    width: 565px;
+    height: 565px;
+    top: -20px;
+    left: -3px;
   }
 }
