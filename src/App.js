@@ -1,21 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-import Wheel from './Wheel';
-import Circle from './Circle';
-import Game2 from './Game2';
-import WheelPicture from './WheelPicture';
-import tekst from "./test.png"
+import "./App.css";
+import WheelPicture from "./WheelPicture";
 function App() {
+  
   return (
     <>
-        <div id="text">
-    <h1>Burde du tage ind og se:</h1>
-    <div id="containerIntro">
-    <h2>"JOKES - fra en hvid, straight mand" ?</h2>
-
-    </div>
-    </div>
-    <WheelPicture></WheelPicture>
+      <div id="text">
+        <h1>Burde du tage ind og se:</h1>
+        <div id="containerIntro">
+          <h2>"JOKES - fra en hvid, straight mand" ?</h2>
+        </div>
+      </div>
+      <WheelPicture></WheelPicture>
     </>
   );
 }
