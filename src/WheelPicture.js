@@ -8,134 +8,130 @@ import video5 from "./Videos/Video5.mp4";
 import video6 from "./Videos/Video6.mp4";
 import video7 from "./Videos/Video7.mp4";
 import video8 from "./Videos/Video8.mp4";
-
+import video9 from  "./Videos/Video9.mp4";
+import video10 from  "./Videos/Video10.mp4";
 import { useRef, useEffect, useState } from "react";
+import { getAllByPlaceholderText } from "@testing-library/react";
 
 function WheelPicture() {
 const[currentVideo, setCurrentVideo] = useState()
+const[winningVideo, setWinningVideo] = useState("1")
 
   const videoRef = useRef();
-  let audios = new Audio("/wheel.mp3")
-
+ 
   useEffect(() => {    
     videoRef.current?.load();
-    audios.load()
+    //audios = new Audio("/wheel.mp3")
+   
+    //audios.load();
+    //audios.load();
+    //audios.load()
   }, [currentVideo]);
 
+  useEffect(() => {    
+    //let audios = document.getElementById("audio")  
+    let audios = document.getElementById("sound")  
+if(audios){
+  
+  audios.load();
+}
+    //audios.load();
+    //audios.load()
+  }, []);
+
   let deg = 0;
-  let zoneSize = 45; // deg
 
-  // Counter clockwise
-  const symbolSegments = {
-    1: "Frog",
-    2: "Snail",
-    3: "Dolphin",
-    4: "Ladybug",
-    5: "Koala",
-    6: "Unicorn",
-    7: "Dragon",
-    8: "Snowman",
-  };
-
-  var prefix = (function () {
-    var styles = window.getComputedStyle(document.documentElement, ''),
-      pre = (Array.prototype.slice
-        .call(styles)
-        .join('') 
-        .match(/-(moz|webkit|ms)-/) || (styles.OLink === '' && ['', 'o'])
-      )[1],
-      dom = ('WebKit|Moz|MS|O').match(new RegExp('(' + pre + ')', 'i'))[1];
-    return {
-      dom: dom,
-      lowercase: pre,
-      css: '-' + pre + '-',
-      js: pre[0].toUpperCase() + pre.substr(1)
-    };
-  })();
+ // var prefix = (function () {
+ //   var styles = window.getComputedStyle(document.documentElement, ''),
+ //     pre = (Array.prototype.slice
+ //       .call(styles)
+ //       .join('') 
+ //       .match(/-(moz|webkit|ms)-/) || (styles.OLink === '' && ['', 'o'])
+ //     )[1],
+ //     dom = ('WebKit|Moz|MS|O').match(new RegExp('(' + pre + ')', 'i'))[1];
+ //   return {
+ //     dom: dom,
+ //     lowercase: pre,
+ //     css: '-' + pre + '-',
+ //     js: pre[0].toUpperCase() + pre.substr(1)
+ //   };
+ // })();
 
 
   
+ //let audios = document.getElementById("audio")  
 
   const handleWin = (actualDeg) => {
-    console.log(actualDeg)
-    console.log(zoneSize)
-    
-    const winningSymbolNr = Math.ceil(actualDeg / zoneSize);
-   // if(actualDeg <= 45){
-   //   alert("bringer ud")
-   // }
-   // if(actualDeg > 45 && actualDeg <= 90){
-   //   alert("anders")
-   // }
-   // if(actualDeg > 90 && actualDeg <= 112.5){
-   //   alert("bytte")
-   // }
-   // if(actualDeg > 112.5 && actualDeg <= 135){
-   //   alert("lilla")
-   // }
-   // if(actualDeg > 135 && actualDeg <= 180){
-   //   alert("anden25")
-   // }
-   // if(actualDeg > 180 && actualDeg <= 225){
-   //   alert("vender")
-   // }
-   // if(actualDeg > 225 && actualDeg <= 270){
-   //   alert("tal for dig")
-   // }
-   // if(actualDeg > 270 && actualDeg <= 315){
-   //   alert("shh")
-   // }
-   // if(actualDeg > 315 && actualDeg <= 360){
-   //   alert("coke")
-   // }
-
-
-    console.log(winningSymbolNr)
-    if(winningSymbolNr===1){
+    if(actualDeg <= 45){
       setCurrentVideo(video1)
+      win()
     }
-    if(winningSymbolNr===2){
+    else if(actualDeg > 45 && actualDeg <= 90){
       setCurrentVideo(video2)
+      win()
     }
-    if(winningSymbolNr===3){
+    else if(actualDeg > 90 && actualDeg <= 135){
       setCurrentVideo(video3)
+      win()
     }
-    if(winningSymbolNr===4){
+    else if(actualDeg > 135 && actualDeg <= 157.5){
       setCurrentVideo(video4)
+      win()
     }
-    if(winningSymbolNr===5){
+    else if(actualDeg > 157.5 && actualDeg <= 180){
       setCurrentVideo(video5)
+      win()
     }
-    if(winningSymbolNr===6){
+    else if(actualDeg > 180 && actualDeg <= 225){
       setCurrentVideo(video6)
+       win()
     }
-    if(winningSymbolNr===7){
+    else if(actualDeg > 225 && actualDeg <= 270){
       setCurrentVideo(video7)
+      win()
     }
-    if(winningSymbolNr===8){
+    else if(actualDeg > 270 && actualDeg <= 292.5){
       setCurrentVideo(video8)
+      win()
     }
-    
-    if (winningSymbolNr) {
+    else if(actualDeg > 292.5 && actualDeg <= 315){
+      setCurrentVideo(video9)
+      win()
+    }
+    else if(actualDeg > 315 && actualDeg <= 360){
+      setCurrentVideo(video10)
+      win()
+    }
+
+      function win(){
+        console.log("hi")
         setTimeout(() => {
-          console.log("Delayed for 1 second.");
+        console.log("Delayed for 1 second.");
         document.getElementById("video").classList.add("videoanimation");
         document.getElementById("video").style.visibility = "visible"
-        //document.querySelector(".wheel").style.zIndex = "0";
         document.getElementById("video").play();
         document.getElementById("video").addEventListener("ended", myHandler, false);
+
         function myHandler(e) {
+          setCurrentVideo(null)
+          //audios.remove();
+          document.getElementById("source").srcObject = null;
           document.getElementById("video").classList.remove("videoanimation");
-          //document.getElementById("video").style.display = "none";
           document.getElementById("video").style.visibility = "hidden"
           const startButton = document.querySelector(".button");
+
            // Enable button when spin is over
           startButton.style.pointerEvents = "auto";
           startButton.classList.remove("disabled");
+          const wheel = document.querySelector(".wheel");
+          wheel.removeEventListener("transitionend", doSomething);
+          wheel.removeEventListener("webkitTransitionEnd", doSomething);
+          wheel.removeEventListener("mozTransitionEnd", doSomething);
+          wheel.removeEventListener("oTransitionEnd", doSomething);
         }
       }, "500")
-    }
   };
+}
 
   document.addEventListener("keypress", function(event) {
     // If the user presses the "Enter" key on the keyboard
@@ -151,8 +147,10 @@ const[currentVideo, setCurrentVideo] = useState()
   });
 
   function start() {
+    console.log("there")
     const startButton = document.querySelector(".button");
     const wheel = document.querySelector(".wheel");
+    let audios = document.getElementById("sound")  
     audios.play()
     startButton.classList.add("disabled");
     //document.getElementById("video").style.display = "block";
@@ -190,62 +188,41 @@ const[currentVideo, setCurrentVideo] = useState()
     wheel.addEventListener("mozTransitionEnd", doSomething);
     wheel.addEventListener("oTransitionEnd", doSomething);
 
-
-    //wheel.addEventListener("webkitTransitionEnd", () => {
-    //  //alert("finished")
-    //  // Remove blur
-    //  wheel.classList.remove("blur");
-    // 
-    // 
-    //  // Need to set transition to none as we want to rotate instantly
-    //  wheel.style.transition = "none";
-    //  wheel.style.webkitTransition="none";
-    //  // Calculate degree on a 360 degree basis to get the "natural" real rotation
-    //  // Important because we wan/wheel.pngt to start the next spin from that one
-    //  // Use modulus to get the rest value
-    //  const actualDeg = deg % 360;
-    //  console.log(actualDeg)
-    //  // Set the real rotation instantly without animation
-    //  wheel.style.transform = `rotate(${actualDeg}deg)`;
-    //  wheel.style.webkitTransform = `rotate(${actualDeg}deg)`;
-    //  // Calculate and display the winning symbol
-    //  handleWin(actualDeg);
-    //});
-
-  function doSomething(){
-    console.log("finished")
-  //alert("finished")
-  // Remove blur
-  wheel.classList.remove("blur");
- 
- 
-  // Need to set transition to none as we want to rotate instantly
-  wheel.style.transition = "none";
-  wheel.style.webkitTransition="none";
-  wheel.style.mozTransition="none";
-  wheel.style.oTransition="none";
-
-  //wheel.style.transitionProperty = "none";
-  //wheel.style.WebkitTransitionProperty="none";
-  //wheel.style.mozTransitionProperty="none";
-  //wheel.style.oTransitionProperty="none";
-  
-    // Calculate degree on a 360 degree basis to get the "natural" real rotation
-  // Important because we wan/wheel.pngt to start the next spin from that one
-  // Use modulus to get the rest value
-  const actualDeg = deg % 360;
-  console.log(actualDeg)
-  // Set the real rotation instantly without animation
-  wheel.style.transform = `rotate(${actualDeg}deg)`;
-  wheel.style.webkitTransform = `rotate(${actualDeg}deg)`;
-  wheel.style.MozTransform = `rotate(${actualDeg}deg)`;
-  wheel.style.msTransform = `rotate(${actualDeg}deg)`;
-  wheel.style.OTransform = `rotate(${actualDeg}deg)`;
-
-  // Calculate and display the winning symbol
-  handleWin(actualDeg);
-    }
 }
+
+function doSomething(){
+  console.log("finished")
+  const wheel = document.querySelector(".wheel");
+
+//alert("finished")
+// Remove blur
+wheel.classList.remove("blur");
+
+
+// Need to set transition to none as we want to rotate instantly
+wheel.style.transition = "none";
+wheel.style.webkitTransition="none";
+wheel.style.mozTransition="none";
+wheel.style.oTransition="none";
+//wheel.style.transitionProperty = "none";
+//wheel.style.WebkitTransitionProperty="none";
+//wheel.style.mozTransitionProperty="none";
+//wheel.style.oTransitionProperty="none";
+
+  // Calculate degree on a 360 degree basis to get the "natural" real rotation
+// Important because we wan/wheel.pngt to start the next spin from that one
+// Use modulus to get the rest value
+const actualDeg = deg % 360;
+console.log(actualDeg)
+// Set the real rotation instantly without animation
+wheel.style.transform = `rotate(${actualDeg}deg)`;
+wheel.style.webkitTransform = `rotate(${actualDeg}deg)`;
+wheel.style.MozTransform = `rotate(${actualDeg}deg)`;
+wheel.style.msTransform = `rotate(${actualDeg}deg)`;
+wheel.style.OTransform = `rotate(${actualDeg}deg)`;
+// Calculate and display the winning symbol
+handleWin(actualDeg);
+  }
 
   return (
     <>
@@ -256,13 +233,13 @@ const[currentVideo, setCurrentVideo] = useState()
       <div id="outer">
         <div id="app">
           <img className="foot" src="fodgrøn2.png" />
-          <img className="wheel" src="hjulgrøn.png" />
+          <img className="wheel" src="HjulGrøntivideoer.png" />
           <img className="marker" src="markerlilla.png" />
-          <img onClick={() => start()} className="button" src="buttongrøn.png" />
+          <img onClick={() => start()} className="button" src="buttongrønlyd.png" />
         </div>
         <div id="web-cam">
           <video ref={videoRef} playsInline id="video" muted>
-            <source src={currentVideo} type="video/mp4" />
+            <source src={currentVideo} id="source" type="video/mp4" />
           </video>
           <div className="shadow"></div>
         </div>
