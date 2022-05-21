@@ -50,9 +50,9 @@ body {
 
 .marker {
   position: absolute;
-  width: 55px;
-  left: 187px;
-  top: 4px;
+  width: 43px;
+  left: 191px;
+  top: 5px;
   z-index: 2;
 }
 
@@ -246,9 +246,9 @@ perspective: 1000;
   }
 
   .marker {
-    left: 149px !important;
+    left: 151px !important;
     top: 4.6px;
-    width: 47px;
+    width: 40px;
   }
 
   .wheel {
