@@ -14,8 +14,6 @@ import { useRef, useEffect, useState } from "react";
 
 function WheelPicture() {
   const [currentVideo, setCurrentVideo] = useState();
-  const [winningVideo, setWinningVideo] = useState("1");
-
   const videoRef = useRef();
 
   useEffect(() => {
@@ -27,9 +25,30 @@ function WheelPicture() {
     if (audios) {
       audios.load();
     }
+    const wheel = document.querySelector(".wheel");
+    if(wheel){
+
+    }
   }, []);
 
+  function hintBrowser() {
+    // The optimizable properties that are going to change
+    // in the animation's keyframes block
+    const wheel = document.querySelector(".wheel");
+    wheel.style.willChange = 'transform, rotate';
+  }
+  
+  function removeHint() {
+    const wheel = document.querySelector(".wheel");
+    wheel.style.willChange = 'auto';
+    //document.getElementById('my_element_id').style.willChange = off;
+  }
+
   let deg = 0;
+
+  //const wheel = document.querySelector(".wheel");
+  window.addEventListener('load', hintBrowser);
+
 
   const handleWin = (actualDeg) => {
     if (actualDeg <= 45) {
@@ -64,10 +83,9 @@ function WheelPicture() {
       win();
     }
 
+
     function win() {
-      console.log("hi");
       setTimeout(() => {
-        console.log("Delayed for 1 second.");
         document.getElementById("video").classList.add("videoanimation");
         document.getElementById("video").style.visibility = "visible";
         document.getElementById("video").play();
@@ -91,8 +109,10 @@ function WheelPicture() {
           wheel.removeEventListener("webkitTransitionEnd", doSomething);
           wheel.removeEventListener("mozTransitionEnd", doSomething);
           wheel.removeEventListener("oTransitionEnd", doSomething);
+          wheel.addEventListener('animationEnd', removeHint);
+
         }
-      }, "500");
+      }, "300");
     }
   };
 
@@ -110,7 +130,6 @@ function WheelPicture() {
   });
 
   function start() {
-    console.log("there");
     const startButton = document.querySelector(".button");
     const wheel = document.querySelector(".wheel");
     let audios = document.getElementById("sound");
@@ -127,16 +146,19 @@ function WheelPicture() {
 
     // Set the transition on the wheel
     wheel.style.transition = "all 9s ease-in-out";
-    wheel.style.webkitTransitionProperty = "transform";
+    wheel.style.webkitTransition = "all 9s ease-in-out";
+    wheel.style.webkitTransitionProperty = "all";
     wheel.style.webkitTransitionDuration = "9s";
-    wheel.style.webkitTransitionDelay = "0s";
+    //wheel.style.webkitTransitionDelay = "0s";
     wheel.style.webkitTransitionTimingFunction = "ease-in-out";
     wheel.style.MozTransition = "all 9s ease-in-out";
     wheel.style.msTransition = "all 9s ease-in-out";
     wheel.style.OTransition = "all 9s ease-in-out";
     // Rotate the wheel
+    //wheel.style.webkitTransitionDelay = "-3.1s"
+    //wheel.style.webkitTransformDelay = "-3.1s";
+    wheel.style.webkitTransform = `translateX(-100%);`;
 
-    wheel.style.webkitTransformDelay = "-0.1s";
     wheel.style.transform = `rotate(${deg}deg)`;
     wheel.style.webkitTransform = `rotate(${deg}deg)`;
     wheel.style.MozTransform = `rotate(${deg}deg)`;
@@ -152,7 +174,6 @@ function WheelPicture() {
   }
 
   function doSomething() {
-    console.log("finished");
     const wheel = document.querySelector(".wheel");
 
     // Remove blur
@@ -168,7 +189,6 @@ function WheelPicture() {
     // Important because we wan/wheel.pngt to start the next spin from that one
     // Use modulus to get the rest value
     const actualDeg = deg % 360;
-    console.log(actualDeg);
     // Set the real rotation instantly without animation
     wheel.style.transform = `rotate(${actualDeg}deg)`;
     wheel.style.webkitTransform = `rotate(${actualDeg}deg)`;
