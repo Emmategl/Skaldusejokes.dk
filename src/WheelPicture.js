@@ -12,126 +12,98 @@ import video9 from "./Videos/Video9.mp4";
 import video10 from "./Videos/Video10.mp4";
 import { useRef, useEffect, useState } from "react";
 import { animated, useSpring } from "@react-spring/web";
-import { motion, useAnimation} from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 
 function WheelPicture() {
   const [currentVideo, setCurrentVideo] = useState();
-  const [dur, setDur] = useState(9);
   const [rotation, setRotation] = useState(0);
-  const [transitionEnd, setTransitionEnd] = useState(false)
+  const [transitionEnd, setTransitionEnd] = useState(false);
   const videoRef = useRef();
-
-  const controls = useAnimation();
-
-
-  //useEffect(() => {
-  //  const timer = setTimeout(() => {
-  //    controls.start({
-  //      backgroundColor: "green",
-  //      rotate: `${rotation}deg`,
-  //      transition: { ease: 'easeInOut', duration: 3 }
-  //    });
-  //  }, 2000);
-  //  return () => {
-  //    clearTimeout(timer);
-  //  };
-  //}, []);
-//  
-//  const startAnimation = () => {
-//  controls.start({
-//    transition: {
-//      duration: 9,
-//      type: "tween",
-//      ease: "easeOut"
-//    }
-//  });
-//};//
-
-//useEffect(() => {
-//  startAnimation();
-// // if (pauseDots) {
-// //   controls.stop();
-// // }
-//}, []);
-
 
   useEffect(() => {
     videoRef.current?.load();
   }, [currentVideo]);
 
   useEffect(() => {
-    if(transitionEnd){
-      doSomething(rotation)
-      setDur(10)
+    if (transitionEnd) {
+      doSomething(rotation);
     }
   }, [transitionEnd]);
 
   useEffect(() => {
-    let audios = document.getElementById("sound");
-    if (audios) {
-      audios.load();
-    }
-    const wheel = document.querySelector(".wheel");
-    if (wheel) {
+    let audio = document.getElementById("sound");
+    if (audio) {
+      audio.load();
     }
   }, []);
 
-  function hintBrowser() {
-    // The optimizable properties that are going to change
-    // in the animation's keyframes block
-    const wheel = document.querySelector(".wheel");
-    const startButton = document.querySelector(".button");
-
-    wheel.style.willChange = "transform, rotate";
-    startButton.style.willChange = "transform, blur";
-  }
-
-  function removeHint() {
-    const wheel = document.querySelector(".wheel");
-    wheel.style.willChange = "auto";
-    //document.getElementById('my_element_id').style.willChange = off;
-  }
-
   let deg = 0;
 
-  //const wheel = document.querySelector(".wheel");
-  window.addEventListener("load", hintBrowser);
+
+  function start() {
+    const startButton = document.querySelector(".button");
+    const wheel = document.querySelector(".wheel");
+    let audios = document.getElementById("sound");
+    audios.play();
+    startButton.classList.add("disabled");
+    //document.getElementById("video").style.display = "block";
+    var video = document.getElementById("video");
+    video.muted = false;
+    // Reset display
+    // Disable button during spin
+    startButton.style.pointerEvents = "none";
+    // Calculate a new rotation between 5000 and 10 000
+    deg = Math.floor(5000 + Math.random() * 5000);
+    setRotation(deg);
+    wheel.classList.add("blur");
+  }
+
+  function doSomething(deg) {
+    const wheel = document.querySelector(".wheel");
+    // Remove blur
+    wheel.classList.remove("blur");
+
+    const actualDeg = deg % 360;
+
+    handleWin(actualDeg);
+  }
 
   const handleWin = (actualDeg) => {
-    setTransitionEnd(false)
+    setTransitionEnd(false);
+
     if (actualDeg <= 45) {
       setCurrentVideo(video1);
-      win();
+      playVideo();
     } else if (actualDeg > 45 && actualDeg <= 90) {
       setCurrentVideo(video2);
-      win();
+      playVideo();
     } else if (actualDeg > 90 && actualDeg <= 135) {
       setCurrentVideo(video3);
-      win();
+      playVideo();
     } else if (actualDeg > 135 && actualDeg <= 157.5) {
       setCurrentVideo(video4);
-      win();
+      playVideo();
     } else if (actualDeg > 157.5 && actualDeg <= 180) {
       setCurrentVideo(video5);
-      win();
+      playVideo();
     } else if (actualDeg > 180 && actualDeg <= 225) {
       setCurrentVideo(video6);
-      win();
+      playVideo();
     } else if (actualDeg > 225 && actualDeg <= 270) {
       setCurrentVideo(video7);
-      win();
+      playVideo();
     } else if (actualDeg > 270 && actualDeg <= 292.5) {
       setCurrentVideo(video8);
-      win();
+      playVideo();
     } else if (actualDeg > 292.5 && actualDeg <= 315) {
       setCurrentVideo(video9);
-      win();
+      playVideo();
     } else if (actualDeg > 315 && actualDeg <= 360) {
       setCurrentVideo(video10);
-      win();
+      playVideo();
     }
 
-    function win() {
+    function playVideo() {
       setTimeout(() => {
         document.getElementById("video").classList.add("videoanimation");
         document.getElementById("video").style.visibility = "visible";
@@ -151,163 +123,14 @@ function WheelPicture() {
           // Enable button when spin is over
           startButton.style.pointerEvents = "auto";
           startButton.classList.remove("disabled");
-          const wheel = document.querySelector(".wheel");
-          wheel.removeEventListener("transitionend", doSomething);
-          wheel.removeEventListener("webkitTransitionEnd", doSomething);
-          wheel.removeEventListener("mozTransitionEnd", doSomething);
-          wheel.removeEventListener("oTransitionEnd", doSomething);
-          wheel.addEventListener("animationEnd", removeHint);
         }
       }, "300");
     }
   };
 
-  document.addEventListener("keypress", function (event) {
-    // If the user presses the "Enter" key on the keyboard
-    if (event.key === "Enter") {
-      // Cancel the default action, if needed
-      event.preventDefault();
-      const startButton = document.querySelector(".button");
-      if (!startButton.classList.contains("disabled")) {
-        // Trigger the button element with a click
-        start();
-      }
-    }
-  });
-
-  function isInstagramApp() {
-    var ua = navigator.userAgent || navigator.vendor || window.opera;
-    return ua.indexOf("Instagram") > -1;
-  }
-
-  function start() {
-
-    const startButton = document.querySelector(".button");
-    const wheel = document.querySelector(".wheel");
-    let audios = document.getElementById("sound");
-    audios.play();
-    startButton.classList.add("disabled");
-    startButton.classList.add("blur");
-    //document.getElementById("video").style.display = "block";
-    var video = document.getElementById("video");
-    video.muted = false;
-    // Reset display
-    // Disable button during spin
-    startButton.style.pointerEvents = "none";
-    // Calculate a new rotation between 5000 and 10 000
-    deg = Math.floor(5000 + Math.random() * 5000);
-  
-    
-
-    if (!isInstagramApp()) {
-      setRotation(deg)
-     // wheel.animate([
-     //   { transform: `rotate(${0}deg)` },
-     //   { transform: `rotate(${deg}deg)` },
-     // ]);
-      //    wheel.style.transition = "all 12.3s ease-in-out";
-      //    wheel.style.webkitTransition = "all 12.3s ease-out";
-      //    //wheel.style.webkitTransitionDelay = "-3.3s"
-      //  wheel.style.webkitBackfaceVisibiliy = "hidden";
-      //  wheel.style.webkitPerspective = "1000";
-      //    //wheel.style.webkitTransformDelay = "-3.1s";
-      //    wheel.style.transform = `rotate(${deg}deg)`;
-      //    wheel.style.webkitTransform = `rotate(${deg}deg)`;
-      //    wheel.classList.add("blur");
-
-      //alert(JSON.stringify(wheel))
-      //wheel.addEventListener("transitionEvent", doSomething);
-      //wheel.addEventListener("webkitTransitionEnd", doSomething);
-
-      
-    } else {
-      // Set the transition on the wheel
-      wheel.style.transition = "all 9s ease-in-out";
-      wheel.style.webkitTransition = "all 9s ease-in-out";
-      //wheel.style.webkitTransitionProperty = "all";
-      //wheel.style.webkitTransitionDuration = "9s";
-      ////wheel.style.webkitTransitionDelay = "0s";
-      //wheel.style.webkitTransitionTimingFunction = "ease-in-out";
-      wheel.style.MozTransition = "all 9s ease-in-out";
-      wheel.style.msTransition = "all 9s ease-in-out";
-      wheel.style.OTransition = "all 9s ease-in-out";
-      // Rotate the wheel
-      //wheel.style.webkitTransitionDelay = "-3.1s"
-      //wheel.style.webkitTransformDelay = "-3.1s";
-      wheel.style.webkitTransform = `translateX(-100%);`;
-
-      wheel.style.transform = `rotate(${deg}deg)`;
-      wheel.style.webkitTransform = `rotate(${deg}deg)`;
-      wheel.style.MozTransform = `rotate(${deg}deg)`;
-      wheel.style.msTransform = `rotate(${deg}deg)`;
-      wheel.style.OTransform = `rotate(${deg}deg)`;
-      // Apply the blur
-      wheel.classList.add("blur");
-
-      wheel.addEventListener("transitionend", doSomething);
-      wheel.addEventListener("webkitTransitionEnd", doSomething);
-      wheel.addEventListener("mozTransitionEnd", doSomething);
-      wheel.addEventListener("oTransitionEnd", doSomething);
-    }
-  }
-
-  function doSomething(deg) {
-    const wheel = document.querySelector(".wheel");
-    // Remove blur
-    wheel.classList.remove("blur");
-
-    // Need to set transition to none as we want to rotate instantly
-    //wheel.style.transition = "none";
-    //wheel.style.webkitTransition = "none";
-    //wheel.style.mozTransition = "none";
-    //wheel.style.oTransition = "none";
-
-    //// Calculate degree on a 360 degree basis to get the "natural" real rotation
-    //// Important because we wan/wheel.pngt to start the next spin from that one
-    //// Use modulus to get the rest value
-    const actualDeg = deg % 360;
-    //// Set the real rotation instantly without animation
-    wheel.style.transform = `rotate(${actualDeg}deg)`;
-    wheel.style.webkitTransform = `rotate(${actualDeg}deg)`;
-    wheel.style.MozTransform = `rotate(${actualDeg}deg)`;
-    wheel.style.msTransform = `rotate(${actualDeg}deg)`;
-    wheel.style.OTransform = `rotate(${actualDeg}deg)`;
-    // Calculate and display the winning symbol
-  
-  
-    handleWin(actualDeg);
-  }
-
-  //let statuss = true;
-  //const styles = useSpring({
-  //  transform: statuss
-  //    ? "translate3d(0px,0,0) scale(1) rotate(0deg)"
-  //    : "translate3d(0px,0,0) scale(1) rotate(20deg)",
-  //});
-
-  //const spring = useSpring({
-  //  from: {
-  //    transform: "rotateZ(0deg)",
-  //  },
-  //  to: {
-  //    transform: "rotateZ(360deg)",
-  //  },
-  //  config: {
-  //    duration: 4000,
-  //    mass: 1,
-  //    tension: 10,
-  //    friction: 10,
-  //  },
-  //});
-  //let isVisible = true;
-
   const onAnimationEnd = () => {
-    setTransitionEnd(true)
+    setTransitionEnd(true);
   };
-
-
-
-//ontransitionend and ontransitonstart - change opacity
 
   return (
     <>
@@ -323,8 +146,9 @@ function WheelPicture() {
           />
           <motion.div
             initial={{ "--rotate": `${rotation}deg` }}
-            animate={{ "--rotate": `${rotation}deg`, transition: { duration: 9 }}}
+            animate={{ "--rotate": `${rotation}deg` }}
             onAnimationComplete={() => onAnimationEnd()}
+            transition={{ ease: "easeInOut", duration: 9 }}
           >
             <img
               className="wheel"
