@@ -84,12 +84,8 @@ body {
 }
 
 .blur {
-  animation: blur 10s;
-  -webkit-animation: blur 10s;
-  -webkit-backface-visibility: hidden;
--webkit-perspective: 1000;
-will-change: blur;
-
+animation: blur 8s;
+-webkit-animation: blur 8s;
 }
 
 @keyframes blur {

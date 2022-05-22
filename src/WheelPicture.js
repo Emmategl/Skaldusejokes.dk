@@ -41,6 +41,8 @@ function WheelPicture() {
 
 
   function start() {
+
+
     const startButton = document.querySelector(".button");
     const wheel = document.querySelector(".wheel");
     let audios = document.getElementById("sound");
@@ -54,7 +56,9 @@ function WheelPicture() {
     startButton.style.pointerEvents = "none";
     // Calculate a new rotation between 5000 and 10 000
     deg = Math.floor(5000 + Math.random() * 5000);
-    setRotation(deg);
+   
+   setRotation((prevState) => prevState + deg)
+    //setRotation(deg);
     wheel.classList.add("blur");
   }
 
@@ -145,14 +149,14 @@ function WheelPicture() {
             src="fodgrøn2.png"
           />
           <motion.div
-            initial={{ "--rotate": `${rotation}deg` }}
-            animate={{ "--rotate": `${rotation}deg` }}
+            initial={{ "--rotate": `${rotation}deg`}}
+            animate={{ "--rotate": `${rotation}deg`}}
             onAnimationComplete={() => onAnimationEnd()}
             transition={{ ease: "easeInOut", duration: 9 }}
           >
             <img
               className="wheel"
-              style={{ transform: "rotate(var(--rotate))" }}
+              style={{ transform: "rotate(var(--rotate))"}}
               src="HjulGrøntivideoer.png"
             />{" "}
           </motion.div>
