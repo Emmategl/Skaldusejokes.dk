@@ -1,6 +1,5 @@
 import "./App.css";
 import WheelPicture from "./WheelPicture";
-import Circle from "./Circle"
 function App() {
   
   return (

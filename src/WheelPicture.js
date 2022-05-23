@@ -11,13 +11,13 @@ import video8 from "./Videos/Video8.mp4";
 import video9 from "./Videos/Video9.mp4";
 import video10 from "./Videos/Video10.mp4";
 import { useRef, useEffect, useState } from "react";
-import { animated, useSpring } from "@react-spring/web";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 
 function WheelPicture() {
   const [currentVideo, setCurrentVideo] = useState();
   const [rotation, setRotation] = useState(0);
   const [transitionEnd, setTransitionEnd] = useState(false);
+  const [ignoreFirst, setIgnoreFirst] = useState(true);
   const videoRef = useRef();
 
   useEffect(() => {
@@ -37,16 +37,13 @@ function WheelPicture() {
     }
   }, []);
 
-  let deg = 0;
-
+  let deg;
 
   function start() {
-
-
+    setIgnoreFirst(false);
     const startButton = document.querySelector(".button");
     const wheel = document.querySelector(".wheel");
-    let audios = document.getElementById("sound");
-    audios.play();
+    document.getElementById("sound").play();
     startButton.classList.add("disabled");
     //document.getElementById("video").style.display = "block";
     var video = document.getElementById("video");
@@ -56,25 +53,19 @@ function WheelPicture() {
     startButton.style.pointerEvents = "none";
     // Calculate a new rotation between 5000 and 10 000
     deg = Math.floor(5000 + Math.random() * 5000);
-   
-   setRotation((prevState) => prevState + deg)
-    //setRotation(deg);
+    setRotation((prevState) => prevState + deg);
     wheel.classList.add("blur");
   }
 
   function doSomething(deg) {
     const wheel = document.querySelector(".wheel");
-    // Remove blur
     wheel.classList.remove("blur");
-
     const actualDeg = deg % 360;
-
     handleWin(actualDeg);
   }
 
-  const handleWin = (actualDeg) => {
+  function handleWin(actualDeg) {
     setTransitionEnd(false);
-
     if (actualDeg <= 45) {
       setCurrentVideo(video1);
       playVideo();
@@ -130,10 +121,12 @@ function WheelPicture() {
         }
       }, "300");
     }
-  };
+  }
 
   const onAnimationEnd = () => {
-    setTransitionEnd(true);
+    if (!ignoreFirst) {
+      setTransitionEnd(true);
+    }
   };
 
   return (
@@ -146,17 +139,17 @@ function WheelPicture() {
           <img
             className="foot"
             style={{ pointerEvents: "none" }}
-            src="fodgrøn2.png"
+            src="foot.png"
           />
           <motion.div
-            initial={{ "--rotate": `${rotation}deg`}}
-            animate={{ "--rotate": `${rotation}deg`}}
+            initial={{ "--rotate": `${rotation}deg` }}
+            animate={{ "--rotate": `${rotation}deg` }}
             onAnimationComplete={() => onAnimationEnd()}
             transition={{ ease: "easeInOut", duration: 9 }}
           >
             <img
               className="wheel"
-              style={{ transform: "rotate(var(--rotate))"}}
+              style={{ transform: "rotate(var(--rotate))" }}
               src="HjulGrøntivideoer.png"
             />{" "}
           </motion.div>
