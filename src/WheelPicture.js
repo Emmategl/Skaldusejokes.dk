@@ -10,11 +10,24 @@ import video7 from "./Videos/Video7.mp4";
 import video8 from "./Videos/Video8.mp4";
 import video9 from "./Videos/Video9.mp4";
 import video10 from "./Videos/Video10.mp4";
+
+import video1Web from "./Videos/Video1.webm";
+import video2Web from "./Videos/Video2.webm";
+import video3Web from "./Videos/Video3.webm";
+import video4Web from "./Videos/Video4.webm";
+import video5Web from "./Videos/Video5.webm";
+import video6Web from "./Videos/Video6.webm";
+import video7Web from "./Videos/Video7.webm";
+import video8Web from "./Videos/Video8.webm";
+import video9Web from "./Videos/Video9.webm";
+import video10Web from "./Videos/Video10.webm";
 import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
+//import Icons from './Icons.svg'
 
 function WheelPicture() {
-  const [currentVideo, setCurrentVideo] = useState();
+  const [currentVideoMP4, setCurrentVideoMP4] = useState();
+  const [currentVideoWebM, setCurrentVideoWebM] = useState();
   const [rotation, setRotation] = useState(0);
   const [transitionEnd, setTransitionEnd] = useState(false);
   const [ignoreFirst, setIgnoreFirst] = useState(true);
@@ -22,7 +35,7 @@ function WheelPicture() {
 
   useEffect(() => {
     videoRef.current?.load();
-  }, [currentVideo]);
+  }, [currentVideoMP4]);
 
   useEffect(() => {
     if (transitionEnd) {
@@ -67,39 +80,53 @@ function WheelPicture() {
   function handleWin(actualDeg) {
     setTransitionEnd(false);
     if (actualDeg <= 45) {
-      setCurrentVideo(video1);
+      setCurrentVideoMP4(video1);
+      setCurrentVideoWebM(video1Web);
       playVideo();
     } else if (actualDeg > 45 && actualDeg <= 90) {
-      setCurrentVideo(video2);
+      setCurrentVideoMP4(video2);
+      setCurrentVideoWebM(video2Web);
       playVideo();
     } else if (actualDeg > 90 && actualDeg <= 135) {
-      setCurrentVideo(video3);
+      setCurrentVideoMP4(video3);
+      setCurrentVideoWebM(video3Web);
       playVideo();
     } else if (actualDeg > 135 && actualDeg <= 157.5) {
-      setCurrentVideo(video4);
+      setCurrentVideoMP4(video4);
+       setCurrentVideoWebM(video4Web);
       playVideo();
     } else if (actualDeg > 157.5 && actualDeg <= 180) {
-      setCurrentVideo(video5);
+      setCurrentVideoMP4(video5);
+      setCurrentVideoWebM(video5Web);
       playVideo();
     } else if (actualDeg > 180 && actualDeg <= 225) {
-      setCurrentVideo(video6);
+      setCurrentVideoMP4(video6);
+      setCurrentVideoWebM(video6Web);
       playVideo();
     } else if (actualDeg > 225 && actualDeg <= 270) {
-      setCurrentVideo(video7);
+      setCurrentVideoMP4(video7);
+      setCurrentVideoWebM(video7Web);
       playVideo();
     } else if (actualDeg > 270 && actualDeg <= 292.5) {
-      setCurrentVideo(video8);
+      setCurrentVideoMP4(video8);
+      setCurrentVideoWebM(video8Web);
       playVideo();
     } else if (actualDeg > 292.5 && actualDeg <= 315) {
-      setCurrentVideo(video9);
+      setCurrentVideoMP4(video9);
+      setCurrentVideoWebM(video9Web);
       playVideo();
     } else if (actualDeg > 315 && actualDeg <= 360) {
-      setCurrentVideo(video10);
+      setCurrentVideoMP4(video10);
+      setCurrentVideoWebM(video10Web);
       playVideo();
     }
 
     function playVideo() {
       setTimeout(() => {
+        const sound = document.getElementById("sound")
+        sound.pause();
+        sound.currentTime = 0;
+
         document.getElementById("video").classList.add("videoanimation");
         document.getElementById("video").style.visibility = "visible";
         document.getElementById("video").play();
@@ -108,7 +135,7 @@ function WheelPicture() {
           .addEventListener("ended", myHandler, false);
 
         function myHandler(e) {
-          setCurrentVideo(null);
+          setCurrentVideoMP4(null);
           //audios.remove();
           document.getElementById("source").srcObject = null;
           document.getElementById("video").classList.remove("videoanimation");
@@ -131,7 +158,7 @@ function WheelPicture() {
 
   return (
     <>
-      <audio id="sound" src="/wheel.mp3" preload="auto">
+      <audio id="sound" type="audio/mpeg" src="/wheel.mp3" preload="auto" autoplay="false">
         Your browser does not support the <code>audio</code> element.
       </audio>
       <div id="outer">
@@ -139,7 +166,7 @@ function WheelPicture() {
           <img
             className="foot"
             style={{ pointerEvents: "none" }}
-            src="foot.png"
+            src="footGrey.png"
           />
           <motion.div
             initial={{ "--rotate": `${rotation}deg` }}
@@ -150,23 +177,27 @@ function WheelPicture() {
             <img
               className="wheel"
               style={{ transform: "rotate(var(--rotate))" }}
-              src="HjulGrøntivideoer.png"
+              src="WheelGrey.png"
             />{" "}
           </motion.div>
           <img
             className="marker"
             style={{ pointerEvents: "none" }}
-            src="markerlilla.png"
+            src="markerGrey2.png"
           />
-          <img
-            onClick={() => start()}
-            className="button"
-            src="buttongrønlyd.png"
-          />
+          <button
+           onClick={() => start()}
+           className="button"
+          >
+            DREJ HJULET
+            <img id="icon" src={require('./IconsWhite.svg').default} alt="Start hjulet" />
+          </button>
         </div>
         <div id="web-cam">
           <video ref={videoRef} playsInline id="video" muted>
-            <source src={currentVideo} id="source" type="video/mp4" />
+            <source src={currentVideoMP4} id="source" type="video/mp4" />
+            <source src={currentVideoWebM} id="source" type="video/webm" />
+            Your browser does not support the video tag.
           </video>
           <div className="shadow"></div>
         </div>

@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <div id="text">
-        <h1>Burde du tage ind og se:</h1>
+        <h1>Skal du ind og se:</h1>
         <div id="containerIntro">
           <h2>"JOKES - fra en hvid, straight mand" ?</h2>
         </div>
