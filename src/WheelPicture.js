@@ -158,7 +158,7 @@ function WheelPicture() {
 
   return (
     <>
-      <audio id="sound" type="audio/mpeg" src="/wheel.mp3" preload="auto" autoplay="false">
+      <audio id="sound" type="audio/mpeg" src="/wheel.mp3" preload="auto">
         Your browser does not support the <code>audio</code> element.
       </audio>
       <div id="outer">
