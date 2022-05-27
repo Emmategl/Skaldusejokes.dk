@@ -185,13 +185,20 @@ body {
 
 #video {
   opacity: 0;
-  visibility: hidden;
   position: absolute;
   width: 410px;
   height: 410px;
   top: -2px;
   left: -3px;
+  transition: opacity 0.4s ease-in-out;
+  -moz-transition: opacity 0.4s ease-in-out;
+  -webkit-transition: opacity 0.4s ease-in-out;
 }
+
+.videoanimation {
+  opacity: 1 !important;
+  }
+
 
 .shadow {
   background-image: radial-gradient(
@@ -207,13 +214,7 @@ body {
   left: 0;
 }
 
-.videoanimation {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transition: opacity 0.3s ease-in-out;
-  -moz-transition: opacity 0.3s ease-in-out;
-  -webkit-transition: opacity 0.3s ease-in-out;
-}
+
 h1{color:red;}
 
 
