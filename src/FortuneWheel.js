@@ -1,5 +1,5 @@
 import "./App.css";
-import "./WheelPicture.css";
+import "./FortuneWheel.css";
 import video1 from "./Videos/Video1.mp4";
 import video2 from "./Videos/Video2.mp4";
 import video3 from "./Videos/Video3.mp4";
@@ -25,7 +25,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 //import Icons from './Icons.svg'
 
-function WheelPicture() {
+function FortuneWheel() {
   const [currentVideoMP4, setCurrentVideoMP4] = useState();
   const [currentVideoWebM, setCurrentVideoWebM] = useState();
   const [rotation, setRotation] = useState(0);
@@ -206,7 +206,7 @@ function WheelPicture() {
   );
 }
 
-export default WheelPicture;
+export default FortuneWheel;
 
 //<animated.div className="test-box" style={spring}>{<h1>hi there</h1>}</animated.div>
 //<animated.div style={styles}>{<h1>hi there</h1>}</animated.div>
