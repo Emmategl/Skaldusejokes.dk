@@ -195,7 +195,7 @@ function WheelPicture() {
         </div>
         <div id="web-cam">
           <video ref={videoRef} playsInline id="video" muted>
-            <source src={video2} id="source" type="video/mp4" />
+            <source src={currentVideoMP4} id="source" type="video/mp4" />
             <source src={currentVideoWebM} id="source" type="video/webm" />
             Your browser does not support the video tag.
           </video>
