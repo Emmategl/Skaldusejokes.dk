@@ -1,5 +1,6 @@
 {
   "name": "jokes_wheel",
+  "homepage" : "https://github.com/Emmategl/jokes",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
