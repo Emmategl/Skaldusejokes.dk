@@ -166,7 +166,7 @@ function WheelPicture() {
           <img
             className="foot"
             style={{ pointerEvents: "none" }}
-            src="footGrey.png"
+            src="foot.png"
           />
           <motion.div
             initial={{ "--rotate": `${rotation}deg` }}
@@ -177,13 +177,13 @@ function WheelPicture() {
             <img
               className="wheel"
               style={{ transform: "rotate(var(--rotate))" }}
-              src="WheelGrey.png"
+              src="wheel.png"
             />{" "}
           </motion.div>
           <img
             className="marker"
             style={{ pointerEvents: "none" }}
-            src="markerGrey2.png"
+            src="marker.png"
           />
           <button
            onClick={() => start()}
