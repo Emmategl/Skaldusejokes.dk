@@ -1,5 +1,11 @@
 import "./App.css";
 import "./FortuneWheel.css";
+import sound from "./Sound/wheel.mp3";
+
+import foot from "./Images/foot.png"
+import wheel from "./Images/wheel.png"
+import marker from "./Images/marker.png"
+
 import video1 from "./Videos/Video1.mp4";
 import video2 from "./Videos/Video2.mp4";
 import video3 from "./Videos/Video3.mp4";
@@ -158,7 +164,7 @@ function FortuneWheel() {
 
   return (
     <>
-      <audio id="sound" type="audio/mpeg" src="/wheel.mp3" preload="auto">
+      <audio id="sound" type="audio/mpeg" src={sound} preload="auto">
         Your browser does not support the <code>audio</code> element.
       </audio>
       <div id="outer">
@@ -166,7 +172,7 @@ function FortuneWheel() {
           <img
             className="foot"
             style={{ pointerEvents: "none" }}
-            src="foot.png"
+            src={foot}
           />
           <motion.div
             initial={{ "--rotate": `${rotation}deg` }}
@@ -177,13 +183,13 @@ function FortuneWheel() {
             <img
               className="wheel"
               style={{ transform: "rotate(var(--rotate))" }}
-              src="wheel.png"
+              src={wheel}
             />{" "}
           </motion.div>
           <img
             className="marker"
             style={{ pointerEvents: "none" }}
-            src="marker.png"
+            src={marker}
           />
           <button
            onClick={() => start()}
@@ -208,9 +214,3 @@ function FortuneWheel() {
 
 export default FortuneWheel;
 
-//<animated.div className="test-box" style={spring}>{<h1>hi there</h1>}</animated.div>
-//<animated.div style={styles}>{<h1>hi there</h1>}</animated.div>
-//<motion.div animate={{ opacity: isVisible ? 1 : 0 }} />//
-
-//<div>dhfdff</div>
-//<div>ddffdh</div>
