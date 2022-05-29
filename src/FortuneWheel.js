@@ -134,8 +134,8 @@ function FortuneWheel() {
         sound.pause();
         sound.currentTime = 0;
 
-        document.getElementById("video").classList.add("videoanimation");
         document.getElementById("video").style.visibility = "visible";
+        document.getElementById("video").classList.add("videoanimation");
         document.getElementById("video").play();
         document
           .getElementById("video")
@@ -196,7 +196,7 @@ function FortuneWheel() {
            onClick={() => start()}
            className="button"
           >
-            Få svaret!
+            Få svaret
             <img id="icon" src={require('./IconsWhite.svg').default} alt="Start hjulet" />
           </button>
         </div>
