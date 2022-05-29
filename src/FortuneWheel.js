@@ -196,7 +196,7 @@ function FortuneWheel() {
            onClick={() => start()}
            className="button"
           >
-            Få svaret
+            Få svaret!
             <img id="icon" src={require('./IconsWhite.svg').default} alt="Start hjulet" />
           </button>
         </div>

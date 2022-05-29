@@ -1,3 +1,12 @@
+.videoanimation {
+  opacity: 1 !important;
+  -webkit-transition: opacity 0.4s ease-in;
+  -moz-transition: opacity 0.4s ease-in;
+  -ms-transition: opacity 0.4s ease-in;
+  -o-transition: opacity 0.4s ease-in;
+  transition: opacity 0.4s ease-in;
+}
+
 .blur {
   -webkit-animation: blur 9s;
   -moz-animation: blur 9s;
@@ -21,6 +30,13 @@
   }
 }
 
+/*
+@keyframes opacityy {
+  0%    { opacity: 0; }
+  100%  { opacity: 1; }
+}
+*/
+
 #video {
   opacity: 0;
   position: absolute;
@@ -28,13 +44,7 @@
   height: 410px;
   top: -2px;
   left: -3px;
-  -webkit-transition: opacity 0.4s ease-in-out;
-  -moz-transition: opacity 0.4s ease-in-out;
-  -ms-transition: opacity 0.4s ease-in-out;
-  -o-transition: opacity 0.4s ease-in-out;
-  transition: opacity 0.4s ease-in-out;
 }
-
 
 @font-face {
   font-family: "GilroyLight"; /*Can be any text*/
@@ -199,11 +209,6 @@ body {
   -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
   mask-image: radial-gradient(circle, white 100%, black 100%);
 }
-
-.videoanimation {
-  opacity: 1 !important;
-  }
-
 
 .shadow {
   background-image: radial-gradient(
