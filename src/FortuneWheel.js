@@ -28,7 +28,7 @@ import video8Web from "./Videos/Video8.webm";
 import video9Web from "./Videos/Video9.webm";
 import video10Web from "./Videos/Video10.webm";
 import { useRef, useEffect, useState } from "react";
-import { AnimationControls, motion } from "framer-motion";
+import { motion } from "framer-motion";
 //import Icons from './Icons.svg'
 
 function FortuneWheel() {
@@ -38,13 +38,6 @@ function FortuneWheel() {
   const [transitionEnd, setTransitionEnd] = useState(false);
   const [ignoreFirst, setIgnoreFirst] = useState(true);
   const videoRef = useRef();
-
-
-  useEffect(() => {
-    document.addEventListener('visibilitychange', this.visibilityChangeHandler);
-
-    return () => { document.removeEventListener('visibilitychange', this.visibilityChangeHandler); }
-  }, [])
 
 
   useEffect(() => {
@@ -65,7 +58,6 @@ function FortuneWheel() {
   }, []);
 
   let deg;
-  
 
   function start() {
     setIgnoreFirst(false);
