@@ -3,7 +3,7 @@ import "./FortuneWheel.css";
 import sound from "./Sound/wheel.mp3";
 
 import foot from "./Images/foot.png"
-import wheel from "./Images/wheel.png"
+import wheel from "./Images/jokesWheel.png"
 import marker from "./Images/marker.png"
 
 import video1 from "./Videos/Video1.mp4";
