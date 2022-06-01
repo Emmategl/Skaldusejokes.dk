@@ -59,6 +59,8 @@ function FortuneWheel() {
 
   let deg;
 
+  
+
   function start() {
     setIgnoreFirst(false);
     const startButton = document.querySelector(".button");
@@ -201,7 +203,7 @@ function FortuneWheel() {
           </button>
         </div>
         <div id="web-cam">
-          <video ref={videoRef} playsInline id="video" muted>
+          <video poster="noposter" ref={videoRef} playsInline id="video" muted>
             <source src={currentVideoMP4} id="source" type="video/mp4" />
             <source src={currentVideoWebM} id="source" type="video/webm" />
             Your browser does not support the video tag.
