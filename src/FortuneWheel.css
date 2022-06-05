@@ -245,6 +245,7 @@ margin-block-start: 0.5em;
     width: 270px;
     height: 270px;
     overflow-x: hidden;
+    visibility: hidden;
   }
 
   #web-cam {
