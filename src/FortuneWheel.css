@@ -38,7 +38,6 @@
 */
 
 #video {
- 
   position: absolute;
   width: 410px;
   height: 410px;
@@ -57,7 +56,7 @@
     url("./Fonts/GilroyExtraBold.woff") format("woff");
 }
 
-button{
+button {
   font-family: "GilroyBold";
 }
 
@@ -70,7 +69,6 @@ h1 {
   font-family: "GilroyLight";
   margin-block-start: 0.6em;
   margin-block-end: -0.2em;
-
 }
 
 h2 {
@@ -105,7 +103,6 @@ body {
 #icon {
   width: 77px;
 }
-
 
 .button {
   left: -4%;
@@ -224,22 +221,18 @@ body {
   left: 0;
 }
 
-
-
-
 @media screen and (max-width: 374px) and (max-height: 575px) {
-
-  h1{
-font-size: 18px;
-margin-block-end: 0em;
-margin-block-start: 0.5em;
+  h1 {
+    font-size: 18px;
+    margin-block-end: 0em;
+    margin-block-start: 0.5em;
   }
 
-  h2{
-    font-size:18px;
+  h2 {
+    font-size: 18px;
     margin-block-end: 2.5em;
   }
-  
+
   #video {
     top: -5px;
     width: 270px;
@@ -267,7 +260,7 @@ margin-block-start: 0.5em;
   }
 
   .foot {
-    top: 435px; 
+    top: 435px;
     left: 65%;
   }
 
@@ -280,7 +273,7 @@ margin-block-start: 0.5em;
     overflow-x: hidden;
     width: 250px;
     font-size: 20px;
-    height:37px;
+    height: 37px;
   }
 
   .marker {
@@ -309,16 +302,15 @@ margin-block-start: 0.5em;
     margin-left: 10px;
   }
 }
-  @media screen and (min-width: 335px) and (max-width: 390px)  {
-
-    h1{
-    font-size:20px;
+@media screen and (min-width: 335px) and (max-width: 390px) {
+  h1 {
+    font-size: 20px;
     margin-block-end: -0.2em;
     margin-block-start: 0.5em;
   }
 
-  h2{
-    font-size:22px;
+  h2 {
+    font-size: 22px;
     margin-block-end: 2.5em;
   }
   #video {
@@ -358,7 +350,7 @@ margin-block-start: 0.5em;
     top: 43px;
     overflow-x: hidden;
     width: 300px;
-  font-size: 24px;
+    font-size: 24px;
   }
 
   .marker {
@@ -382,19 +374,16 @@ margin-block-start: 0.5em;
     position: relative;
     height: 100%;
   }
-
 }
 
-
-@media screen and (max-width: 425px) and  (min-width: 390px){
-
-  h1{
-    font-size:29px;
+@media screen and (max-width: 425px) and (min-width: 390px) {
+  h1 {
+    font-size: 29px;
     margin-block-end: -0.2em;
   }
 
-  h2{
-    font-size:29px;
+  h2 {
+    font-size: 29px;
     margin-block-end: 1.8em;
   }
   #video {
@@ -439,7 +428,6 @@ margin-block-start: 0.5em;
     font-size: 25px;
     height: 55px;
     width: 290px;
-    
   }
 
   .marker {
@@ -465,14 +453,14 @@ margin-block-start: 0.5em;
   }
 }
 
-@media screen and (max-width: 768px) and  (min-width: 425px){
-  h1{
-    font-size:29px;
+@media screen and (max-width: 768px) and (min-width: 425px) {
+  h1 {
+    font-size: 29px;
     margin-block-end: -0.4em;
   }
 
-  h2{
-    font-size:29px;
+  h2 {
+    font-size: 29px;
     margin-block-end: 1.3em;
   }
 
@@ -517,7 +505,6 @@ margin-block-start: 0.5em;
     font-size: 27px;
     height: 60px;
     width: 300px;
-    
   }
 
   .marker {
@@ -543,8 +530,7 @@ margin-block-start: 0.5em;
   }
 }
 
-
-@media screen and (min-width:885px) and (max-width: 1024px) and (min-height: 1200px) {
+@media screen and (min-width: 885px) and (max-width: 1024px) and (min-height: 1200px) {
   #app {
     top: 400px;
     left: 54%;
@@ -591,14 +577,13 @@ margin-block-start: 0.5em;
 }
 
 @media screen and (min-width: 768px) and (max-width: 824px) {
-
-  h1{
-    font-size:32px;
+  h1 {
+    font-size: 32px;
     margin-block-end: -0.2em;
     margin-block-start: 0.2em;
   }
-  h2{
-    font-size:32px;
+  h2 {
+    font-size: 32px;
     margin-block-end: 1em;
   }
   #app {
@@ -614,7 +599,7 @@ margin-block-start: 0.5em;
     top: 200px;
     left: 55.2%;
     margin-top: -185px;
-    margin-left: -305px;
+    margin-left: -307px;
     width: 541px;
     height: 541px;
   }
@@ -639,22 +624,20 @@ margin-block-start: 0.5em;
   }
 
   #video {
-    width: 540px;
-    height: 540px;
+    width: 542px;
+    height: 542px;
     top: 1px !important;
     left: -1px;
   }
 }
 
-
 @media screen and (min-width: 768px) and (min-height: 1028px) {
-
-  h1{
-    font-size:45px;
+  h1 {
+    font-size: 45px;
     margin-block-end: -0.2em;
   }
-  h2{
-    font-size:45px;
+  h2 {
+    font-size: 45px;
   }
 
   #app {
@@ -702,17 +685,13 @@ margin-block-start: 0.5em;
   }
 }
 
-
-
-
 @media screen and (min-width: 1080px) and (min-height: 1028px) {
-
-  h1{
-    font-size:55px;
+  h1 {
+    font-size: 55px;
     margin-block-end: -0.2em;
   }
-  h2{
-    font-size:55px;
+  h2 {
+    font-size: 55px;
     margin-block-end: 0.7em;
   }
   #app {
@@ -758,14 +737,9 @@ margin-block-start: 0.5em;
     top: 1px !important;
     left: -1px;
   }
-  
 }
 
-
-
-
 @media screen and (min-width: 1580px) and (min-height: 1250px) {
-
   #app {
     top: 430px;
     left: 50%;
@@ -811,14 +785,13 @@ margin-block-start: 0.5em;
   }
 }
 
-@media screen and (min-width: 1030px) and (min-height: 700px) and (max-height: 720px) and (max-width: 1280px){
-
-  h1{
-    font-size:30px;
+@media screen and (min-width: 1030px) and (min-height: 700px) and (max-height: 720px) and (max-width: 1280px) {
+  h1 {
+    font-size: 30px;
     margin-block-end: -0.2em;
   }
-  h2{
-    font-size:30px;
+  h2 {
+    font-size: 30px;
     margin-block-end: 2em;
   }
   #app {
