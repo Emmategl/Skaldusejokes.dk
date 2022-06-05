@@ -63,19 +63,19 @@ button{
 
 h1 {
   color: black;
-  font-size: 36px;
+  font-size: 34px;
   margin-left: 20px;
   margin-right: 20px;
   text-align: center;
   font-family: "GilroyLight";
   margin-block-start: 0.6em;
-  margin-block-end: -0.1em;
+  margin-block-end: -0.2em;
 
 }
 
 h2 {
   color: black;
-  font-size: 36px;
+  font-size: 34px;
   margin-left: 20px;
   margin-right: 20px;
   text-align: center;
@@ -110,7 +110,7 @@ body {
 .button {
   left: -4%;
   position: relative;
-  top: 76px;
+  top: 68px;
   display: block;
   width: 340px;
   margin: 20px auto;
