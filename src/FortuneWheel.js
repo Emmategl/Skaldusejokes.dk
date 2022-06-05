@@ -36,7 +36,10 @@ function FortuneWheel() {
   const [currentVideoWebM, setCurrentVideoWebM] = useState();
   const [rotation, setRotation] = useState(0);
   const [transitionEnd, setTransitionEnd] = useState(false);
+
   const [ignoreFirst, setIgnoreFirst] = useState(true);
+
+  const [visibleVideo, setVisibleVideo] = useState(false);
   const videoRef = useRef();
 
 
@@ -135,9 +138,10 @@ function FortuneWheel() {
         const sound = document.getElementById("sound")
         sound.pause();
         sound.currentTime = 0;
-
-        document.getElementById("video").style.visibility = "visible";
-        document.getElementById("video").classList.add("videoanimation");
+        setVisibleVideo(true)
+        //document.getElementById("video").style.visibility = "visible";
+        //document.getElementById("video").classList.add("videoanimation");
+        
         document.getElementById("video").play();
         document
           .getElementById("video")
@@ -147,8 +151,9 @@ function FortuneWheel() {
           setCurrentVideoMP4(null);
           //audios.remove();
           document.getElementById("source").srcObject = null;
-          document.getElementById("video").classList.remove("videoanimation");
-          document.getElementById("video").style.visibility = "hidden";
+          setVisibleVideo(false)
+          //document.getElementById("video").classList.remove("videoanimation");
+          //document.getElementById("video").style.visibility = "hidden";
           const startButton = document.querySelector(".button");
 
           // Enable button when spin is over
@@ -163,6 +168,11 @@ function FortuneWheel() {
     if (!ignoreFirst) {
       setTransitionEnd(true);
     }
+  };
+
+  const variants = {
+    open: { opacity: 1 },
+    closed: { opacity: 0 }
   };
 
   return (
@@ -202,15 +212,25 @@ function FortuneWheel() {
             <img id="icon" src={require('./IconsWhite.svg').default} alt="Start hjulet" />
           </button>
         </div>
+        <motion.div
+    animate={visibleVideo ? "open" : "closed"}
+    variants={variants}  
+    transition={{ ease: "easeInOut", duration: 1 }}
+
+>
         <div id="web-cam">
           <video poster="noposter" ref={videoRef} playsInline id="video" muted>
-            <source src={currentVideoMP4} id="source" type="video/mp4" />
+            <source src={video8} id="source" type="video/mp4" />
             <source src={currentVideoWebM} id="source" type="video/webm" />
             Your browser does not support the video tag.
+         
           </video>
+          
           <div className="shadow"></div>
         </div>
+        </motion.div>
       </div>
+      
     </>
   );
 }
