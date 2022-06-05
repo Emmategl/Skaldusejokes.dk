@@ -36,7 +36,10 @@ function FortuneWheel() {
   const [currentVideoWebM, setCurrentVideoWebM] = useState();
   const [rotation, setRotation] = useState(0);
   const [transitionEnd, setTransitionEnd] = useState(false);
+
   const [ignoreFirst, setIgnoreFirst] = useState(true);
+
+  const [visibleVideo, setVisibleVideo] = useState(false);
   const videoRef = useRef();
 
 
@@ -49,6 +52,12 @@ function FortuneWheel() {
       doSomething(rotation);
     }
   }, [transitionEnd]);
+
+  useEffect(() => {
+    if (!ignoreFirst) {
+      setVideo(rotation)
+    }
+  }, [rotation]);
 
   useEffect(() => {
     let audio = document.getElementById("sound");
@@ -86,58 +95,59 @@ function FortuneWheel() {
     handleWin(actualDeg);
   }
 
-  function handleWin(actualDeg) {
-    setTransitionEnd(false);
+
+  function setVideo(rotation){
+    const actualDeg = rotation % 360;
     if (actualDeg <= 45) {
       setCurrentVideoMP4(video1);
       setCurrentVideoWebM(video1Web);
-      playVideo();
     } else if (actualDeg > 45 && actualDeg <= 90) {
       setCurrentVideoMP4(video2);
       setCurrentVideoWebM(video2Web);
-      playVideo();
     } else if (actualDeg > 90 && actualDeg <= 135) {
       setCurrentVideoMP4(video3);
       setCurrentVideoWebM(video3Web);
-      playVideo();
     } else if (actualDeg > 135 && actualDeg <= 157.5) {
       setCurrentVideoMP4(video4);
        setCurrentVideoWebM(video4Web);
-      playVideo();
     } else if (actualDeg > 157.5 && actualDeg <= 180) {
       setCurrentVideoMP4(video5);
       setCurrentVideoWebM(video5Web);
-      playVideo();
     } else if (actualDeg > 180 && actualDeg <= 225) {
       setCurrentVideoMP4(video6);
       setCurrentVideoWebM(video6Web);
-      playVideo();
     } else if (actualDeg > 225 && actualDeg <= 270) {
       setCurrentVideoMP4(video7);
       setCurrentVideoWebM(video7Web);
-      playVideo();
     } else if (actualDeg > 270 && actualDeg <= 292.5) {
       setCurrentVideoMP4(video8);
       setCurrentVideoWebM(video8Web);
-      playVideo();
     } else if (actualDeg > 292.5 && actualDeg <= 315) {
       setCurrentVideoMP4(video9);
       setCurrentVideoWebM(video9Web);
-      playVideo();
     } else if (actualDeg > 315 && actualDeg <= 360) {
       setCurrentVideoMP4(video10);
       setCurrentVideoWebM(video10Web);
-      playVideo();
     }
+
+  }
+
+  function handleWin(actualDeg) {
+    setTransitionEnd(false);
+    playVideo()
+  }
+
 
     function playVideo() {
       setTimeout(() => {
+        document.getElementById("video").style.visibility = "visible";
         const sound = document.getElementById("sound")
         sound.pause();
         sound.currentTime = 0;
-
-        document.getElementById("video").style.visibility = "visible";
-        document.getElementById("video").classList.add("videoanimation");
+        setVisibleVideo(true)
+      
+        //document.getElementById("video").classList.add("videoanimation");
+        
         document.getElementById("video").play();
         document
           .getElementById("video")
@@ -147,8 +157,9 @@ function FortuneWheel() {
           setCurrentVideoMP4(null);
           //audios.remove();
           document.getElementById("source").srcObject = null;
-          document.getElementById("video").classList.remove("videoanimation");
-          document.getElementById("video").style.visibility = "hidden";
+          setVisibleVideo(false)
+          //document.getElementById("video").classList.remove("videoanimation");
+          //document.getElementById("video").style.visibility = "hidden";
           const startButton = document.querySelector(".button");
 
           // Enable button when spin is over
@@ -157,12 +168,17 @@ function FortuneWheel() {
         }
       }, "300");
     }
-  }
+  
 
   const onAnimationEnd = () => {
     if (!ignoreFirst) {
       setTransitionEnd(true);
     }
+  };
+
+  const variants = {
+    open: { opacity: 1 },
+    closed: { opacity: 0 }
   };
 
   return (
@@ -202,15 +218,25 @@ function FortuneWheel() {
             <img id="icon" src={require('./IconsWhite.svg').default} alt="Start hjulet" />
           </button>
         </div>
+        <motion.div
+        initial={"opacity: 0"}
+        animate={visibleVideo ? "open" : "closed"}
+        variants={variants}  
+        transition={{ ease: "easeInOut", duration: 0.5 }}
+>
         <div id="web-cam">
           <video poster="noposter" ref={videoRef} playsInline id="video" muted>
             <source src={currentVideoMP4} id="source" type="video/mp4" />
             <source src={currentVideoWebM} id="source" type="video/webm" />
             Your browser does not support the video tag.
+         
           </video>
+          
           <div className="shadow"></div>
         </div>
+        </motion.div>
       </div>
+      
     </>
   );
 }
