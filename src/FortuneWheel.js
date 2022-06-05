@@ -36,7 +36,7 @@ function FortuneWheel() {
   const [currentVideoWebM, setCurrentVideoWebM] = useState();
   const [rotation, setRotation] = useState(0);
   const [transitionEnd, setTransitionEnd] = useState(false);
-
+  const [loadedImages, setLoadedImages] = useState(false);
   const [ignoreFirst, setIgnoreFirst] = useState(true);
 
   const [visibleVideo, setVisibleVideo] = useState(false);
@@ -181,8 +181,17 @@ function FortuneWheel() {
     closed: { opacity: 0 }
   };
 
+  function handleImageLoaded(){
+    setLoadedImages(true)
+    }
+    
+
   return (
     <>
+    <div
+   className="results"
+   style={{ visibility: loadedImages ? "visible" : "hidden" }}
+ >
       <audio id="sound" type="audio/mpeg" src={sound} preload="auto">
         Your browser does not support the <code>audio</code> element.
       </audio>
@@ -203,6 +212,10 @@ function FortuneWheel() {
               className="wheel"
               style={{ transform: "rotate(var(--rotate))" }}
               src={wheel}
+              onLoad={() => {
+                handleImageLoaded();
+              }}
+              
             />{" "}
           </motion.div>
           <img
@@ -236,7 +249,7 @@ function FortuneWheel() {
         </div>
         </motion.div>
       </div>
-      
+      </div>
     </>
   );
 }
