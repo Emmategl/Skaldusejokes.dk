@@ -54,6 +54,12 @@ function FortuneWheel() {
   }, [transitionEnd]);
 
   useEffect(() => {
+    if (!ignoreFirst) {
+      setVideo(rotation)
+    }
+  }, [rotation]);
+
+  useEffect(() => {
     let audio = document.getElementById("sound");
     if (audio) {
       audio.load();
@@ -79,8 +85,6 @@ function FortuneWheel() {
     // Calculate a new rotation between 5000 and 10 000
     deg = Math.floor(5000 + Math.random() * 5000);
     setRotation((prevState) => prevState + deg);
-    const actualDeg = deg % 360;
-    //setVideo(actualDeg)
     wheel.classList.add("blur");
   }
 
@@ -92,7 +96,8 @@ function FortuneWheel() {
   }
 
 
-  function setVideo(actualDeg){
+  function setVideo(rotation){
+    const actualDeg = rotation % 360;
     if (actualDeg <= 45) {
       setCurrentVideoMP4(video1);
       setCurrentVideoWebM(video1Web);
@@ -129,44 +134,10 @@ function FortuneWheel() {
 
   function handleWin(actualDeg) {
     setTransitionEnd(false);
-    if (actualDeg <= 45) {
-      playVideo();
-    } else if (actualDeg > 45 && actualDeg <= 90) {
-      playVideo();
-    } else if (actualDeg > 90 && actualDeg <= 135) {
-      setCurrentVideoMP4(video3);
-      setCurrentVideoWebM(video3Web);
-      playVideo();
-    } else if (actualDeg > 135 && actualDeg <= 157.5) {
-      setCurrentVideoMP4(video4);
-       setCurrentVideoWebM(video4Web);
-      playVideo();
-    } else if (actualDeg > 157.5 && actualDeg <= 180) {
-      setCurrentVideoMP4(video5);
-      setCurrentVideoWebM(video5Web);
-      playVideo();
-    } else if (actualDeg > 180 && actualDeg <= 225) {
-      setCurrentVideoMP4(video6);
-      setCurrentVideoWebM(video6Web);
-      playVideo();
-    } else if (actualDeg > 225 && actualDeg <= 270) {
-      setCurrentVideoMP4(video7);
-      setCurrentVideoWebM(video7Web);
-      playVideo();
-    } else if (actualDeg > 270 && actualDeg <= 292.5) {
-      setCurrentVideoMP4(video8);
-      setCurrentVideoWebM(video8Web);
-      playVideo();
-    } else if (actualDeg > 292.5 && actualDeg <= 315) {
-      setCurrentVideoMP4(video9);
-      setCurrentVideoWebM(video9Web);
-      playVideo();
-    } else if (actualDeg > 315 && actualDeg <= 360) {
-      setCurrentVideoMP4(video10);
-      setCurrentVideoWebM(video10Web);
-      playVideo();
-    }
+    playVideo()
   }
+
+
     function playVideo() {
       setTimeout(() => {
         document.getElementById("video").style.visibility = "visible";
@@ -251,7 +222,7 @@ function FortuneWheel() {
         initial={"opacity: 0"}
         animate={visibleVideo ? "open" : "closed"}
         variants={variants}  
-        transition={{ ease: "easeInOut", duration: 0.6 }}
+        transition={{ ease: "easeInOut", duration: 0.5 }}
 >
         <div id="web-cam">
           <video poster="noposter" ref={videoRef} playsInline id="video" muted>
