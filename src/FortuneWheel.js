@@ -223,6 +223,7 @@ function FortuneWheel() {
             style={{ pointerEvents: "none" }}
             src={marker}
           />
+         
           <button
            onClick={() => start()}
            className="button"
